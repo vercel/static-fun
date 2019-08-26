@@ -1,7 +1,7 @@
 const uid = require("uid-promise");
 const jwt = require("jwt-simple");
 
-const existingPages = ["paulo", "rauchg"];
+const existingPages = ["paulo"];
 
 module.exports = async (req, res) => {
   console.log("SECRET", process.env.secret);
@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
   const { page } = req.query;
 
   // query fauna to see if page exists
+  let pageData = `<h1>my fun static page</h1>`
 
   console.log("page", page);
 

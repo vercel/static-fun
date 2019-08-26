@@ -1,6 +1,8 @@
 {
   "version": 2,
-  "env": {
-    "STATIC_FUN_SECRET": "@static-fun-secret"
+  "build": {
+    "env": {
+      "STATIC_FUN_SECRET": "@static-fun-secret"
+    }
   }
 }

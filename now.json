@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "env": {
+    "STATIC_FUN_SECRET": "@static-fun-secret"
+  }
+}

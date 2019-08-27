@@ -9,8 +9,12 @@ module.exports = async (req, res) => {
   // grab page subdomain data from req.query
   const { page } = req.query;
 
+  if (!page) {
+    res.status(200).json({ pageData: null, user: null });
+  }
+
   // query fauna to see if page exists
-  let pageData = `<h1>my fun static page</h1>`
+  let pageData = `<h1>my fun static page</h1>`;
 
   console.log("page", page);
 
@@ -23,11 +27,10 @@ module.exports = async (req, res) => {
     res.setHeader("Set-Cookie", `token=${token}`);
     // return 404 and explicit null pageData to inform client to
     // render default page
-    res.status(404).json({ pageData: null });
+    res.status(404).json({ pageData: null, user: page });
     return;
   } else {
     // found page, send it down the wire
-    res.status(200).json({ pageData})
+    res.status(200).json({ pageData });
   }
-
 };

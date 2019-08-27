@@ -3,12 +3,17 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 const defaultStyles = `
 * {
   margin: 0;
- padding: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+  width: 100%;
 }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
-`
+`;
 
 class StaticFunDoc extends Document {
   render() {
@@ -25,7 +30,7 @@ class StaticFunDoc extends Document {
             content="claim a wildcard subdomain and have fun!"
           />
           <link rel="icon" href="/favicon.ico" />
-        <style dangerouslySetInnerHTML={{__html: defaultStyles}} />
+          <style dangerouslySetInnerHTML={{ __html: defaultStyles }} />
         </Head>
         <body>
           <Main />

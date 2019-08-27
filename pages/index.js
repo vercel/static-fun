@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
-import { FixedCenterLayout } from "../components/layouts";
+import { FixedCenterLayout, EditorLayout } from "../components/layouts";
 import { getPageData } from "../lib/data";
 
 export default function IndexPage() {
@@ -18,17 +18,15 @@ export default function IndexPage() {
         <PacmanLoader loading={typeof pageData === "undefined"} />
       </FixedCenterLayout>
     );
-  } else if (pageData === null) {
+  } else if (pageData && pageData.pageData === null) {
+    return <EditorLayout pageData={`<h1>Welcome to static.fun</h1>`} />;
+  } else if (pageData === null || pageData.user === null) {
     return (
       <FixedCenterLayout>
         <p>Welcome to static.fun</p>
       </FixedCenterLayout>
     );
   } else {
-    return (
-      <FixedCenterLayout>
-        <div dangerouslySetInnerHTML={{ __html: pageData }} />
-      </FixedCenterLayout>
-    );
+    return <EditorLayout pageData={pageData} />;
   }
 }

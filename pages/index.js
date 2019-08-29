@@ -3,7 +3,7 @@ import Head from "next/head";
 import PacmanLoader from "react-spinners/PacmanLoader";
 
 import { FixedCenterLayout, EditorLayout } from "../components/layouts";
-import { getPageData } from "../lib/data";
+import { getPageData, defaultMarkup } from "../lib/data";
 
 export default function IndexPage() {
   const [pageData, setPageData] = useState(undefined);
@@ -19,7 +19,7 @@ export default function IndexPage() {
       </FixedCenterLayout>
     );
   } else if (pageData && pageData.pageData === null) {
-    return <EditorLayout pageData={`<h1>Welcome to static.fun</h1>`} />;
+    return <EditorLayout pageData={defaultMarkup} />;
   } else if (pageData === null || pageData.user === null) {
     return (
       <FixedCenterLayout>

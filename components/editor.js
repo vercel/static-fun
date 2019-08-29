@@ -37,18 +37,25 @@ export default function EditorContainer({ pageData }) {
 
 function Editor({ pageData, setHtml }) {
   function onChange(e) {
-    setHtml(e.target.innerText);
+    setHtml(e.target.value);
   }
   return (
-    <div contentEditable="true" onInput={onChange}>
-      {pageData}
+    <div>
+      <textarea contentEditable="true" onChange={onChange}>
+        {pageData}
+      </textarea>
       <style jsx>{`
         div {
+          width: 100%;
+          height: 100%;
+        }
+        textarea {
           width: 100%;
           height: 100%;
           background: #000;
           color: #fff;
           font-family: Menlo, monospace;
+          font-size: 16px;
           padding: 24px;
         }
       `}</style>

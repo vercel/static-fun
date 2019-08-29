@@ -9,7 +9,7 @@ export function FixedCenterLayout({ children, title }) {
         <title>{title || "Static Fun"}</title>
       </Head>
       <TopBar>
-        {`static.fun is a static hosting playground to demonstrate ZEIT's support of wildcard domains. To start, go to {your-own-page}.static.fun}!`}
+        {`static.fun is a static hosting playground to demonstrate ZEIT's support of wildcard domains. To start, go to {your-own-page}.static.fun!`}
       </TopBar>
       <div className="children-container">{children}</div>
       <style jsx>{`

@@ -1,12 +1,25 @@
 import { useState, useEffect, useRef } from "react";
+import SaveDialog from "./save-dialog";
 
 export default function EditorContainer({ pageData }) {
   const [html, setHtml] = useState(pageData || "");
 
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [emailSaved, setEmailSaved] = useState(false);
   return (
     <div className="container">
+      <SaveDialog
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
+        setEmailSaved={setEmailSaved}
+      />
       <div className="editor-container">
-        <Editor pageData={pageData} setHtml={setHtml} />
+        <Editor
+          pageData={pageData}
+          setHtml={setHtml}
+          emailSaved={emailSaved}
+          setDialogOpen={setDialogOpen}
+        />
       </div>
       <div className="output-container">
         <OutputContainer content={html} />
@@ -35,9 +48,12 @@ export default function EditorContainer({ pageData }) {
   );
 }
 
-function Editor({ pageData, setHtml }) {
+function Editor({ pageData, setHtml, setDialogOpen, emailSaved }) {
   function onChange(e) {
     setHtml(e.target.value);
+    if (!emailSaved) {
+      setDialogOpen(true);
+    }
   }
   return (
     <div>

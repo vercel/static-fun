@@ -4,8 +4,6 @@ const faunadb = require("faunadb");
 const { Get, Match, Index } = faunadb.query;
 const { client } = require("../../lib/db");
 
-let existingPages = ["secret-test"];
-
 module.exports = async (req, res) => {
   let {
     query: { page },
@@ -42,7 +40,8 @@ module.exports = async (req, res) => {
       res.status(200).json({ html, allowEdit: false });
       return;
     }
-  } catch {
+  } catch (error) {
+    console.error({ error });
     res.status(404).json({ html: null });
   }
 };

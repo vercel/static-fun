@@ -4,7 +4,8 @@
     "build": "next build"
   },
   "dependencies": {
-    "he": "^1.2.0",
+    "faunadb": "^2.8.0",
+    "ioredis": "^4.14.0",
     "jwt-simple": "^0.5.6",
     "next": "^9.0.5",
     "react": "^16.9.0",

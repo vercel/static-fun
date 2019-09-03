@@ -1,25 +1,56 @@
 const uid = require("uid-promise");
 const jwt = require("jwt-simple");
+const faunadb = require("faunadb");
+const { Get, Match, Index } = faunadb.query;
+const { client } = require("../../lib/db");
+
+let existingPages = ["secret-test"];
 
 module.exports = async (req, res) => {
-  const { page } = req.query;
-  const { token } = req.cookies;
-
-  console.log(token);
+  let {
+    query: { page },
+    cookies: { token, linkToken }
+  } = req;
 
   if (!page) {
-    res.status(200).json({ pageData: null, user: null });
+    res.status(400).json({ error: "visit [sub].domain.tld" });
   }
 
-  if (!token) {
-    const sessionId = await uid(21);
-    const token = jwt.encode({ sessionId }, process.env.secret);
+  let sessionId;
 
+  if (linkToken) {
+    sessionId = decode(linkToken).sessionId;
+    res.setHeader("Set-Cookie", `token=${linkToken}`);
+  } else if (token && !linkToken) {
+    sessionId = decode(token).sessionId;
     res.setHeader("Set-Cookie", `token=${token}`);
-    res.status(404).json({ pageData: null, user: page });
-
-    return;
   } else {
-    res.status(200).json({ pageData: null, user: page });
+    sessionId = await uid(16);
+    token = encode({ sessionId });
+    res.setHeader("Set-Cookie", `token=${token}`);
+  }
+
+  try {
+    let {
+      data: { sessionId: savedPageSessionId, html }
+    } = await client.query(Get(Match(Index("page_by_name"), page)));
+
+    if (savedPageSessionId === sessionId) {
+      res.status(200).json({ html, allowEdit: true });
+      return;
+    } else {
+      res.status(200).json({ html, allowEdit: false });
+      return;
+    }
+  } catch {
+    res.status(404).json({ html: null });
   }
 };
+
+function encode(o) {
+  return jwt.encode(o, process.env.secret);
+}
+
+function decode(t) {
+  return jwt.decode(t, process.env.secret);
+}

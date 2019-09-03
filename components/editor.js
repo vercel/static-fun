@@ -12,6 +12,7 @@ export default function EditorContainer({ pageData }) {
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
         setEmailSaved={setEmailSaved}
+        html={html}
       />
       <div className="editor-container">
         <Editor
@@ -49,6 +50,7 @@ export default function EditorContainer({ pageData }) {
 }
 
 function Editor({ pageData, setHtml, setDialogOpen, emailSaved }) {
+  console.log({ pageData });
   function onChange(e) {
     setHtml(e.target.value);
     if (!emailSaved) {

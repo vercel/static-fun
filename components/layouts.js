@@ -24,13 +24,13 @@ export function FixedCenterLayout({ children, title }) {
   );
 }
 
-export function EditorLayout({ html, email }) {
+export function EditorLayout({ html, email, editLink }) {
   return (
     <main>
       <TopBar>
         {`static.fun is a static hosting playground to demonstrate ZEIT's support of wildcard domains. To start, go to {your-own-page}.static.fun!`}
       </TopBar>
-      <EditorContainer html={html} email={email} />
+      <EditorContainer html={html} email={email} editLink={editLink} />
       <style jsx>{`
         main {
           height: 100vh;

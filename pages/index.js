@@ -13,13 +13,17 @@ export default function IndexPage() {
   const [pageData, setPageData] = useState();
 
   useEffect(() => {
+    let href = window.location.href;
     let linkToken = new URLSearchParams(window.location.search).get("edit");
     if (linkToken) {
       document.cookie = `linkToken=${linkToken}`;
+      window.history.pushState({ linkToken }, "", "/");
     }
-    window.history.pushState({ linkToken }, "", "/");
-    getPageData(setPageData);
-  }, []);
+    if (!pageData) {
+      getPageData(setPageData, href);
+    }
+    console.log({ pageData });
+  }, [pageData]);
 
   if (typeof pageData === "undefined") {
     return (
@@ -28,14 +32,20 @@ export default function IndexPage() {
       </FixedCenterLayout>
     );
   } else if (pageData && pageData.html === null) {
-    return <EditorLayout html={defaultMarkup} />;
+    return <EditorLayout html={defaultMarkup} editLink={pageData.editLink} />;
   } else if (
     pageData &&
     pageData.html &&
     pageData.email &&
     pageData.allowEdit
   ) {
-    return <EditorLayout html={pageData.html} email={pageData.email} />;
+    return (
+      <EditorLayout
+        html={pageData.html}
+        email={pageData.email}
+        editLink={pageData.editLink}
+      />
+    );
   } else if (pageData && pageData.html && !pageData.allowEdit) {
     return <RenderStaticLayout html={pageData.html} />;
   } else {

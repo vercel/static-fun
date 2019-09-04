@@ -38,15 +38,18 @@ module.exports = async (req, res) => {
     } = await client.query(Get(Match(Index("page_by_name"), page)));
 
     if (savedPageSessionId === sessionId) {
-      res.status(200).json({ html, email, allowEdit: true });
+      res.status(200).json({ html, email, allowEdit: true, token });
       return;
     } else {
-      res.status(200).json({ html, email, allowEdit: false });
+      res.status(200).json({ html, email, allowEdit: false, token });
       return;
     }
   } catch (error) {
-    console.error({ error });
-    res.status(404).json({ html: null });
+    if (error.name === "NotFound") {
+      res.status(404).json({ html: null, token });
+    } else {
+      console.error({ error });
+    }
   }
 };
 

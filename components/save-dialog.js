@@ -1,27 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SaveDialog({
   dialogOpen,
   setDialogOpen,
   setEmailSaved,
-  html
+  html,
+  email,
+  setEmail,
+  editLink
 }) {
-  const [email, setEmail] = useState("");
-  const [editLink, setEditLink] = useState("");
-
   async function savePage() {
     // needs better validation
     if (email) {
-      const res = await fetch("/api/save-page", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, html })
-      });
-      if (res.ok) {
-        const { editLink: link } = await res.json();
-        setEditLink(link);
+      try {
+        const res = await fetch("/api/save-page", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ email, html })
+        });
+        if (res.ok) {
+          setDialogOpen(false);
+        }
+      } catch (e) {
+        console.error(e);
       }
     }
 
@@ -35,13 +38,11 @@ export default function SaveDialog({
   return (
     <dialog open={dialogOpen}>
       <div className="content-container">
-        {editLink && (
-          <div className="edit-link">
-            <p>
-              Edit Link: <span>{editLink}</span>
-            </p>
-          </div>
-        )}
+        <div className="edit-link">
+          <p>
+            Edit Link: <input type="text" value={editLink} />
+          </p>
+        </div>
         <div className="header">
           <h2>Enter your email to save the page and get an edit link</h2>
         </div>

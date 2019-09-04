@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import SaveDialog from "./save-dialog";
 import SaveBar from "./save-bar";
 
-export default function EditorContainer({ html, email }) {
+export default function EditorContainer({ html, email, editLink }) {
   const [_html, setHtml] = useState(html || "");
   const [_email, setEmail] = useState(email || "");
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -15,6 +15,7 @@ export default function EditorContainer({ html, email }) {
         setEmail={setEmail}
         setDialogOpen={setDialogOpen}
         html={_html}
+        editLink={editLink}
       />
       <div className="output-container">
         <OutputContainer content={_html} />

@@ -1,14 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-export default function SaveDialog({
+export default function ShowEditLink({
   dialogOpen,
   setDialogOpen,
   setEmailSaved,
-  html,
-  email,
-  setEmail,
   editLink
 }) {
+  const [email, setEmail] = useState(email);
+  const [skip, setSkip] = useState(false);
+  const dialogRef = useRef();
+
+  useEffect(() => {
+    console.log("dialogref", dialogRef);
+    if (dialogOpen) {
+      dialogRef.current.showModal();
+    }
+  }, []);
+
   async function savePage() {
     // needs better validation
     if (email) {
@@ -27,8 +35,10 @@ export default function SaveDialog({
         console.error(e);
       }
     }
+  }
 
-    //setDialogOpen(false);
+  async function sendEmail() {
+    console.log("sending email to: ", email);
   }
 
   function emailInputHandler(e) {
@@ -36,7 +46,7 @@ export default function SaveDialog({
   }
 
   return (
-    <dialog open={dialogOpen}>
+    <dialog ref={dialogRef}>
       <div className="content-container">
         <div className="edit-link">
           <p>
@@ -44,12 +54,22 @@ export default function SaveDialog({
           </p>
         </div>
         <div className="header">
-          <h2>Enter your email to save the page and get an edit link</h2>
+          <h2>Enter your email to save the edit link</h2>
         </div>
         <div className="input-container">
           <input type="text" value={email} onChange={emailInputHandler} />
-          <button onClick={savePage}>save</button>
+          <button onClick={sendEmail}>send</button>
         </div>
+        {skip && (
+          <div>
+            <p>
+              without saving this editing link, you will lose editing rights to
+              this page, please consider emailing it to yourself
+            </p>
+            <button onClick={() => dialogRef.current.close()}>skip!</button>
+          </div>
+        )}
+        {!skip && <button onClick={() => setSkip(true)}>skip</button>}
       </div>
       <style jsx>{`
         dialog[open] {
@@ -58,6 +78,9 @@ export default function SaveDialog({
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
+        }
+        dialog::backdrop {
+          background: rgba(0, 0, 0, 0.4);
         }
         .header h2 {
           font-size: 16px;

@@ -24,13 +24,18 @@ export default function IndexPage() {
   if (typeof pageData === "undefined") {
     return (
       <FixedCenterLayout>
-        <PacmanLoader loading={typeof pageData === "undefined"} />
+        <PacmanLoader loading={true} />
       </FixedCenterLayout>
     );
   } else if (pageData && pageData.html === null) {
-    return <EditorLayout pageData={defaultMarkup} />;
-  } else if (pageData && pageData.html && pageData.allowEdit) {
-    return <EditorLayout pageData={pageData.html} />;
+    return <EditorLayout html={defaultMarkup} />;
+  } else if (
+    pageData &&
+    pageData.html &&
+    pageData.email &&
+    pageData.allowEdit
+  ) {
+    return <EditorLayout html={pageData.html} email={pageData.email} />;
   } else if (pageData && pageData.html && !pageData.allowEdit) {
     return <RenderStaticLayout html={pageData.html} />;
   } else {

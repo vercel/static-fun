@@ -23,21 +23,25 @@ module.exports = async (req, res) => {
     sessionId = decode(token).sessionId;
     res.setHeader("Set-Cookie", `token=${token}`);
   } else {
-    sessionId = await uid(16);
-    token = encode({ sessionId });
-    res.setHeader("Set-Cookie", `token=${token}`);
+    try {
+      sessionId = await uid(16);
+      token = encode({ sessionId });
+      res.setHeader("Set-Cookie", `token=${token}`);
+    } catch (e) {
+      throw new Error(e.message);
+    }
   }
 
   try {
     let {
-      data: { sessionId: savedPageSessionId, html }
+      data: { sessionId: savedPageSessionId, html, email }
     } = await client.query(Get(Match(Index("page_by_name"), page)));
 
     if (savedPageSessionId === sessionId) {
-      res.status(200).json({ html, allowEdit: true });
+      res.status(200).json({ html, email, allowEdit: true });
       return;
     } else {
-      res.status(200).json({ html, allowEdit: false });
+      res.status(200).json({ html, email, allowEdit: false });
       return;
     }
   } catch (error) {

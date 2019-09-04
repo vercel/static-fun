@@ -1,30 +1,33 @@
 import { useState, useEffect, useRef } from "react";
 import SaveDialog from "./save-dialog";
+import SaveBar from "./save-bar";
 
-export default function EditorContainer({ pageData }) {
-  const [html, setHtml] = useState(pageData || "");
-
+export default function EditorContainer({ html, email }) {
+  const [_html, setHtml] = useState(html || "");
+  const [_email, setEmail] = useState(email || "");
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [emailSaved, setEmailSaved] = useState(false);
+
   return (
     <div className="container">
       <SaveDialog
         dialogOpen={dialogOpen}
+        email={_email}
+        setEmail={setEmail}
         setDialogOpen={setDialogOpen}
-        setEmailSaved={setEmailSaved}
-        html={html}
+        html={_html}
       />
+      <div className="output-container">
+        <OutputContainer content={_html} />
+      </div>
       <div className="editor-container">
         <Editor
-          pageData={pageData}
+          html={_html}
+          email={_email}
           setHtml={setHtml}
-          emailSaved={emailSaved}
           setDialogOpen={setDialogOpen}
         />
       </div>
-      <div className="output-container">
-        <OutputContainer content={html} />
-      </div>
+
       <style jsx>{`
         .container {
           display: flex;
@@ -49,19 +52,17 @@ export default function EditorContainer({ pageData }) {
   );
 }
 
-function Editor({ pageData, setHtml, setDialogOpen, emailSaved }) {
-  console.log({ pageData });
+function Editor({ html, email, setHtml, setDialogOpen }) {
   function onChange(e) {
     setHtml(e.target.value);
-    if (!emailSaved) {
+    if (!email) {
       setDialogOpen(true);
     }
   }
   return (
     <div>
-      <textarea contentEditable="true" onChange={onChange}>
-        {pageData}
-      </textarea>
+      <SaveBar />
+      <textarea onChange={onChange}>{html}</textarea>
       <style jsx>{`
         div {
           width: 100%;
@@ -75,6 +76,7 @@ function Editor({ pageData, setHtml, setDialogOpen, emailSaved }) {
           font-family: Menlo, monospace;
           font-size: 16px;
           padding: 24px;
+          border: none;
         }
       `}</style>
     </div>
@@ -93,11 +95,13 @@ function OutputContainer({ content }) {
     const head = document.getElementsByTagName("head")[0];
     document.body.innerHTML = content || "";
   }
+
   return (
     <iframe ref={iframeRef} title="html-output">
       <style jsx>{`
         height: 100%;
         width: 100%;
+        border: none;
       `}</style>
     </iframe>
   );

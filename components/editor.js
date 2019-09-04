@@ -10,7 +10,7 @@ export default function EditorContainer({ html, email }) {
   return (
     <div className="container">
       <SaveDialog
-        dialogOpen={dialogOpen}
+        dialogOpen={true}
         email={_email}
         setEmail={setEmail}
         setDialogOpen={setDialogOpen}
@@ -33,6 +33,8 @@ export default function EditorContainer({ html, email }) {
           display: flex;
           height: 100%;
           width: 100%;
+          margin-top: 0;
+          margin-bottom: 0;
         }
         .editor-container {
           height: 100%;
@@ -43,9 +45,6 @@ export default function EditorContainer({ html, email }) {
           flex: 1;
           height: 100%;
           width: 100%;
-        }
-        .hidden {
-          display: none;
         }
       `}</style>
     </div>

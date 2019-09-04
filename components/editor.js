@@ -4,13 +4,14 @@ import SaveBar from "./save-bar";
 
 export default function EditorContainer({ html, email, editLink }) {
   const [_html, setHtml] = useState(html || "");
-  const [_email, setEmail] = useState(email || "");
+  const [_email, setEmail] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <div className="container">
       <ShowEditLink
-        dialogOpen={true}
+        dialogOpen={dialogOpen}
+        setDialogOpen={setDialogOpen}
         email={_email}
         setEmail={setEmail}
         html={_html}
@@ -60,7 +61,7 @@ function Editor({ html, email, setHtml, setDialogOpen }) {
   }
   return (
     <div>
-      <SaveBar />
+      <SaveBar setDialogOpen={setDialogOpen} />
       <textarea onChange={onChange}>{html}</textarea>
       <style jsx>{`
         div {

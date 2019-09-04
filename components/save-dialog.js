@@ -4,9 +4,10 @@ export default function ShowEditLink({
   dialogOpen,
   setDialogOpen,
   setEmailSaved,
+  email,
+  setEmail,
   editLink
 }) {
-  const [email, setEmail] = useState(email);
   const [skip, setSkip] = useState(false);
   const dialogRef = useRef();
 
@@ -15,7 +16,7 @@ export default function ShowEditLink({
     if (dialogOpen) {
       dialogRef.current.showModal();
     }
-  }, []);
+  }, [dialogOpen]);
 
   async function savePage() {
     // needs better validation
@@ -39,6 +40,9 @@ export default function ShowEditLink({
 
   async function sendEmail() {
     console.log("sending email to: ", email);
+    setDialogOpen(false);
+    setSkip(false);
+    dialogRef.current.close();
   }
 
   function emailInputHandler(e) {
@@ -66,10 +70,29 @@ export default function ShowEditLink({
               without saving this editing link, you will lose editing rights to
               this page, please consider emailing it to yourself
             </p>
-            <button onClick={() => dialogRef.current.close()}>skip!</button>
+            <button
+              onClick={() => {
+                setDialogOpen(false);
+                setSkip(false);
+                dialogRef.current.close();
+                y;
+              }}
+            >
+              skip!
+            </button>
           </div>
         )}
-        {!skip && <button onClick={() => setSkip(true)}>skip</button>}
+        {!skip && email && (
+          <button
+            onClick={() => {
+              setDialogOpen(false);
+              dialogRef.current.close();
+            }}
+          >
+            close
+          </button>
+        )}
+        {!skip && !email && <button onClick={() => setSkip(true)}>skip</button>}
       </div>
       <style jsx>{`
         dialog[open] {

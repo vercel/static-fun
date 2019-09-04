@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Button from "./button";
 
-export default function SaveBar() {
+export default function SaveBar({ setDialogOpen }) {
   return (
     <div className="container">
       <p>Last saved _ min ago</p>
       <div className="edit-link-and-save">
-        <p>show edit link</p>
+        <p onClick={() => setDialogOpen(true)}>show edit link</p>
         <Button>Save</Button>
       </div>
       <style jsx>{`
@@ -23,6 +23,7 @@ export default function SaveBar() {
           font-size: 14px;
           color: white;
           font-weight: bold;
+          cursor: pointer;
         }
         .edit-link-and-save {
           display: flex;

@@ -20,9 +20,6 @@ export default function EditorContainer({ html, email, editLink }) {
         skip={skip}
         setSkip={setSkip}
       />
-      <div className="output-container">
-        <OutputContainer content={_html} />
-      </div>
       <div className="editor-container">
         <Editor
           skip={skip}
@@ -31,6 +28,9 @@ export default function EditorContainer({ html, email, editLink }) {
           setHtml={setHtml}
           setDialogOpen={setDialogOpen}
         />
+      </div>
+      <div className="output-container">
+        <OutputContainer content={_html} />
       </div>
 
       <style jsx>{`

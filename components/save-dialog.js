@@ -75,7 +75,6 @@ export default function ShowEditLink({
                 setDialogOpen(false);
                 setSkip(false);
                 dialogRef.current.close();
-                y;
               }}
             >
               skip!

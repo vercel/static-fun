@@ -1,9 +1,12 @@
 import { useState } from "react";
 import Button from "./button";
 
-export default function SaveBar({ setDialogOpen, html }) {
-  const [saveState, setSaveState] = useState();
-
+export default function SaveBar({
+  setDialogOpen,
+  html,
+  saveState,
+  setSaveState
+}) {
   async function savePage() {
     console.log("saving page");
     setSaveState("SAVING");

@@ -45,9 +45,10 @@ export default function EditLinkModal({
 
   async function sendEmail() {
     console.log("sending email to: ", email);
+    dialogRef.current.close();
     setDialogOpen(false);
     setSkip(false);
-    dialogRef.current.close();
+    localStorage.setItem("email", email);
   }
 
   function emailInputHandler(e) {
@@ -60,7 +61,7 @@ export default function EditLinkModal({
         <div className="edit-link">
           <h2>
             Secret Edit Link:{" "}
-            <input ref={editLinkRef} type="text" value={editLink} />
+            <input ref={editLinkRef} type="text" value={editLink} readOnly />
           </h2>
           <p>
             Please don't share the edit link with anyone you don't want editing

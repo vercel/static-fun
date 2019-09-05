@@ -24,6 +24,7 @@ export default function IndexPage() {
       getPageData(setPageData, href);
     }
     console.log({ pageData });
+    return () => {};
   }, [pageData]);
 
   if (typeof pageData === "undefined") {

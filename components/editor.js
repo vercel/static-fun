@@ -57,16 +57,26 @@ export default function EditorContainer({ html, email, editLink }) {
 }
 
 function Editor({ html, email, setHtml, setDialogOpen, skip }) {
+  const [saveState, setSaveState] = useState();
+
   function onChange(e) {
     setHtml(e.target.value);
     if (!email && !skip) {
       setDialogOpen(true);
     }
+    if (saveState === "SUCCESS") {
+      setSaveState("DEFAULT");
+    }
   }
   return (
     <div>
-      <SaveBar setDialogOpen={setDialogOpen} html={html} />
-      <textarea onChange={onChange}>{html}</textarea>
+      <SaveBar
+        setDialogOpen={setDialogOpen}
+        html={html}
+        saveState={saveState}
+        setSaveState={setSaveState}
+      />
+      <textarea value={html} onChange={onChange} />
       <style jsx>{`
         div {
           width: 100%;

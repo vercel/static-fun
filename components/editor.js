@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import ShowEditLink from "./save-dialog";
+import EditLinkModal from "./edit-link-modal";
 import SaveBar from "./save-bar";
 
 export default function EditorContainer({ html, email, editLink }) {
@@ -9,7 +9,7 @@ export default function EditorContainer({ html, email, editLink }) {
 
   return (
     <div className="container">
-      <ShowEditLink
+      <EditLinkModal
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
         email={_email}

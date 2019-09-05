@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-export default function ShowEditLink({
+export default function EditLinkModal({
   dialogOpen,
   setDialogOpen,
   setEmailSaved,
@@ -10,11 +10,14 @@ export default function ShowEditLink({
 }) {
   const [skip, setSkip] = useState(false);
   const dialogRef = useRef();
+  const editLinkRef = useRef();
 
   useEffect(() => {
     console.log("dialogref", dialogRef);
     if (dialogOpen) {
       dialogRef.current.showModal();
+      editLinkRef.current.select();
+      document.execCommand("copy");
     }
   }, [dialogOpen]);
 
@@ -54,7 +57,7 @@ export default function ShowEditLink({
       <div className="content-container">
         <div className="edit-link">
           <p>
-            Edit Link: <input type="text" value={editLink} />
+            Edit Link: <input ref={editLinkRef} type="text" value={editLink} />
           </p>
         </div>
         <div className="header">

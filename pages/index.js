@@ -4,6 +4,7 @@ import PacmanLoader from "react-spinners/PacmanLoader";
 
 import {
   FixedCenterLayout,
+  FixedCenterLayoutTopBar,
   EditorLayout,
   RenderStaticLayout
 } from "../components/layouts";
@@ -45,9 +46,9 @@ export default function IndexPage() {
     return <RenderStaticLayout html={pageData.html} />;
   } else {
     return (
-      <FixedCenterLayout>
+      <FixedCenterLayoutTopBar>
         <p>Welcome to static.fun</p>
-      </FixedCenterLayout>
+      </FixedCenterLayoutTopBar>
     );
   }
 }

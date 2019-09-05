@@ -24,11 +24,34 @@ export function FixedCenterLayout({ children, title }) {
   );
 }
 
+export function FixedCenterLayoutTopBar({ children, title }) {
+  return (
+    <main>
+      <Head>
+        <title>{title || "Static Fun"}</title>
+      </Head>
+      <TopBar>{`static.fun is a static hosting playground to demonstrate ZEIT's support of wildcard domains. To start, go to {your-own-page}.static.fun!`}</TopBar>
+      <div className="children-container">{children}</div>
+      <style jsx>{`
+        html {
+          background: none;
+        }
+        .children-container {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      `}</style>
+    </main>
+  );
+}
+
 export function EditorLayout({ html, email, editLink }) {
   return (
     <main>
       <TopBar>
-        {`static.fun is a static hosting playground to demonstrate ZEIT's support of wildcard domains. To start, go to {your-own-page}.static.fun!`}
+        {`static.fun is a static hosting playground to demonstrate ZEIT's support of wildcard domains. Learn more at zeit.co/wildcard-aliases`}
       </TopBar>
       <EditorContainer html={html} email={email} editLink={editLink} />
       <style jsx>{`

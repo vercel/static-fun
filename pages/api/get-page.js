@@ -1,5 +1,4 @@
 const uid = require("uid-promise");
-const jwt = require("jwt-simple");
 const faunadb = require("faunadb");
 const { Get, Match, Index } = faunadb.query;
 const { client } = require("../../lib/db");
@@ -17,15 +16,15 @@ module.exports = async (req, res) => {
   let sessionId;
 
   if (linkToken) {
-    sessionId = decode(linkToken).sessionId;
+    sessionId = linkToken;
     res.setHeader("Set-Cookie", `token=${linkToken}`);
   } else if (token && !linkToken) {
-    sessionId = decode(token).sessionId;
+    sessionId = token;
     res.setHeader("Set-Cookie", `token=${token}`);
   } else {
     try {
-      sessionId = await uid(16);
-      token = encode({ sessionId });
+      sessionId = await uid(10);
+      token = sessionId;
       res.setHeader("Set-Cookie", `token=${token}`);
     } catch (e) {
       throw new Error(e.message);
@@ -52,11 +51,3 @@ module.exports = async (req, res) => {
     }
   }
 };
-
-function encode(o) {
-  return jwt.encode(o, process.env.secret);
-}
-
-function decode(t) {
-  return jwt.decode(t, process.env.secret);
-}

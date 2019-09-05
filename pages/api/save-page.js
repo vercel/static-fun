@@ -1,4 +1,3 @@
-const { decode } = require("jwt-simple");
 const faunadb = require("faunadb");
 const { Get, Match, Index, Update, Create, Collection } = faunadb.query;
 
@@ -11,7 +10,7 @@ module.exports = async (req, res) => {
     headers: { host }
   } = req;
 
-  const { sessionId } = decode(token, process.env.secret);
+  const sessionId = token;
 
   console.log({
     host,
@@ -72,7 +71,6 @@ module.exports = async (req, res) => {
     }
   }
   // if doens't exist, make new page with sessionId, email, and data
-  // create new token with sessionId and email data
 
   //  const updatedToken = jwt.encode({ sessionId, email }, process.env.secret);
 

@@ -33,12 +33,7 @@ export default function IndexPage() {
     );
   } else if (pageData && pageData.html === null) {
     return <EditorLayout html={defaultMarkup} editLink={pageData.editLink} />;
-  } else if (
-    pageData &&
-    pageData.html &&
-    pageData.email &&
-    pageData.allowEdit
-  ) {
+  } else if (pageData && pageData.html && pageData.allowEdit) {
     return (
       <EditorLayout
         html={pageData.html}

@@ -1,4 +1,4 @@
-export default function Button({ children, ...rest }) {
+export default function Button({ children, state, ...rest }) {
   return (
     <button {...rest}>
       {children || "$$$"}
@@ -14,9 +14,18 @@ export default function Button({ children, ...rest }) {
           width: 64px;
           border: none;
         }
+      `}</style>
+      <style jsx>{`
+        button:disabled {
+          cursor: ${state === "SAVING" ? "wait" : "pointer"};
+          text-decoration: none;
+        }
         button:hover {
-          cursor: pointer;
-          text-decoration: underline;
+          text-decoration: ${state !== "SAVING" &&
+          state !== "ERROR" &&
+          state !== "SUCCESS"
+            ? "underline"
+            : "none"};
         }
       `}</style>
     </button>

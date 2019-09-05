@@ -61,7 +61,7 @@ function Editor({ html, email, setHtml, setDialogOpen }) {
   }
   return (
     <div>
-      <SaveBar setDialogOpen={setDialogOpen} />
+      <SaveBar setDialogOpen={setDialogOpen} html={html} />
       <textarea onChange={onChange}>{html}</textarea>
       <style jsx>{`
         div {

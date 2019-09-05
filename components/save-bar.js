@@ -1,13 +1,60 @@
 import { useState } from "react";
 import Button from "./button";
 
-export default function SaveBar({ setDialogOpen }) {
+export default function SaveBar({ setDialogOpen, html }) {
+  const [saveState, setSaveState] = useState();
+
+  async function savePage() {
+    console.log("saving page");
+    setSaveState("SAVING");
+    try {
+      const res = await fetch("/api/save-page", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ html })
+      });
+      if (res.ok) {
+        setSaveState("SUCCESS");
+      }
+    } catch ({ name, message }) {
+      setSaveState("ERROR");
+      console.error(`${name}: ${message}`);
+    }
+  }
+
+  function renderButton() {
+    switch (saveState) {
+      case "SAVING":
+        return (
+          <Button disabled state="SAVING">
+            ⏳
+          </Button>
+        );
+      case "ERROR":
+        return (
+          <Button disabled state="ERROR">
+            ❌
+          </Button>
+        );
+      case "SUCCESS":
+        return (
+          <Button disabled state="SUCCESS">
+            🎉
+          </Button>
+        );
+      default:
+        return <Button onClick={savePage}>Save</Button>;
+    }
+  }
+
   return (
     <div className="container">
       <p>Last saved _ min ago</p>
       <div className="edit-link-and-save">
         <p onClick={() => setDialogOpen(true)}>show edit link</p>
-        <Button>Save</Button>
+        {renderButton()}
       </div>
       <style jsx>{`
         .container {

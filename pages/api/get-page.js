@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
   let sessionId;
 
   if (linkToken) {
+    console.log({ linkToken });
     sessionId = linkToken;
     res.setHeader("Set-Cookie", `token=${linkToken}`);
   } else if (token && !linkToken) {
@@ -35,6 +36,11 @@ module.exports = async (req, res) => {
     let {
       data: { sessionId: savedPageSessionId, html, email }
     } = await client.query(Get(Match(Index("page_by_name"), page)));
+
+    console.log({
+      sessionId,
+      savedPageSessionId
+    });
 
     if (savedPageSessionId === sessionId) {
       res.status(200).json({ html, email, allowEdit: true, token });

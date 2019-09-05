@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import Button from "./button";
 
 export default function EditLinkModal({
   dialogOpen,
@@ -6,9 +7,10 @@ export default function EditLinkModal({
   setEmailSaved,
   email,
   setEmail,
-  editLink
+  editLink,
+  skip,
+  setSkip
 }) {
-  const [skip, setSkip] = useState(false);
   const dialogRef = useRef();
   const editLinkRef = useRef();
 
@@ -56,16 +58,28 @@ export default function EditLinkModal({
     <dialog ref={dialogRef}>
       <div className="content-container">
         <div className="edit-link">
+          <h2>
+            Secret Edit Link:{" "}
+            <input ref={editLinkRef} type="text" value={editLink} />
+          </h2>
           <p>
-            Edit Link: <input ref={editLinkRef} type="text" value={editLink} />
+            Please don't share the edit link with anyone you don't want editing
+            your page!
           </p>
         </div>
         <div className="header">
           <h2>Enter your email to save the edit link</h2>
         </div>
         <div className="input-container">
-          <input type="text" value={email} onChange={emailInputHandler} />
-          <button onClick={sendEmail}>send</button>
+          <input
+            type="text"
+            placeholder="joe@john.com"
+            value={email}
+            onChange={emailInputHandler}
+          />
+          <Button black onClick={sendEmail}>
+            send
+          </Button>
         </div>
         {skip && (
           <div>
@@ -73,33 +87,33 @@ export default function EditLinkModal({
               without saving this editing link, you will lose editing rights to
               this page, please consider emailing it to yourself
             </p>
-            <button
+            <Button
               onClick={() => {
                 setDialogOpen(false);
-                setSkip(false);
                 dialogRef.current.close();
               }}
             >
               skip!
-            </button>
+            </Button>
           </div>
         )}
         {!skip && email && (
-          <button
+          <Button
             onClick={() => {
               setDialogOpen(false);
               dialogRef.current.close();
             }}
           >
             close
-          </button>
+          </Button>
         )}
-        {!skip && !email && <button onClick={() => setSkip(true)}>skip</button>}
+        {!skip && !email && <Button onClick={() => setSkip(true)}>skip</Button>}
       </div>
       <style jsx>{`
         dialog[open] {
           background: gold;
           position: fixed;
+          width: 500px;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
@@ -109,21 +123,41 @@ export default function EditLinkModal({
         }
         .header h2 {
           font-size: 16px;
-          width: 284px;
         }
         .content-container {
-          height: 144px;
-          width: fit-content;
+          font-family: Menlo;
+          height: 286px;
+          width: 100%;
           text-align: center;
           display: flex;
           flex-direction: column;
           justify-content: space-evenly;
+          align-items: center;
         }
-        .edit-link {
+        .edit-link h2 {
+          color: red;
+          font-size: 16px;
+        }
+        p {
+          font-size: 12px;
+          width: 400px;
+          padding: 16px;
           font-weight: bold;
         }
-        .edit-link span {
-          color: red;
+        input {
+          color: black;
+          background: white;
+          height: 32px;
+          width: 286px;
+          font-weight: bold;
+          font-family: Menlo;
+          border: none;
+          padding: 8px;
+        }
+
+        .edit-link input {
+          color: white;
+          background: #464646;
         }
       `}</style>
     </dialog>

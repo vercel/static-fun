@@ -27,7 +27,7 @@ class StaticFunDoc extends Document {
           />
           <meta
             name="description"
-            content="claim a wildcard subdomain and have fun!"
+            content="claim any subdomain and have fun!"
           />
           <link rel="icon" href="/favicon.ico" />
           <style dangerouslySetInnerHTML={{ __html: defaultStyles }} />

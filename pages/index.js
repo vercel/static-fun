@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import PacmanLoader from "react-spinners/PacmanLoader";
+import Spinner from "../components/spinner";
 
 import {
   FixedCenterLayout,
@@ -34,7 +34,7 @@ export default function IndexPage() {
   if (typeof pageData === "undefined") {
     return (
       <FixedCenterLayout>
-        <PacmanLoader loading={true} />
+        <Spinner delay={300} />
       </FixedCenterLayout>
     );
   } else if (pageData && pageData.html === null) {

@@ -8,6 +8,7 @@
     "faunadb": "^2.8.0",
     "jwt-simple": "^0.5.6",
     "next": "^9.0.5",
+    "node-fetch": "^2.6.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-spinners": "^0.6.1",

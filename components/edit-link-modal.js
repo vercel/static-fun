@@ -11,6 +11,10 @@ export default function EditLinkModal({
   skip,
   setSkip
 }) {
+  const [sendingState, setSendingState] = useState();
+  const [successMessage, setSuccessMessage] = useState();
+  const [errorMessage, setErrorMessage] = useState();
+
   const dialogRef = useRef();
   const editLinkRef = useRef();
 
@@ -25,28 +29,9 @@ export default function EditLinkModal({
     }
   }, [dialogOpen]);
 
-  async function savePage() {
-    // needs better validation
-    if (email) {
-      try {
-        const res = await fetch("/api/save-page", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({ email, html })
-        });
-        if (res.ok) {
-          setDialogOpen(false);
-        }
-      } catch (e) {
-        console.error(e);
-      }
-    }
-  }
-
   async function sendEmail() {
-    console.log("sending email to: ", email);
+    setSendingState("SENDING");
+    setErrorMessage(null);
     let res = await fetch("/api/send-email", {
       method: "POST",
       headers: {
@@ -54,14 +39,48 @@ export default function EditLinkModal({
       },
       body: JSON.stringify({ email, editLink })
     });
-    dialogRef.current.close();
-    setDialogOpen(false);
-    setSkip(false);
-    localStorage.setItem("email", email);
+    if (res.ok) {
+      setSendingState("SUCCESS");
+      localStorage.setItem("email", email);
+    }
+    if (!res.ok) {
+      setSendingState("ERROR");
+      let { message } = await res.json();
+      setErrorMessage(message);
+    }
   }
 
   function emailInputHandler(e) {
     setEmail(e.target.value);
+  }
+
+  function renderEmailButton() {
+    switch (sendingState) {
+      case "SENDING":
+        return (
+          <Button black disabled state="SENDING">
+            ⏳
+          </Button>
+        );
+      case "ERROR":
+        return (
+          <Button black onClick={sendEmail} state="ERROR">
+            ❌
+          </Button>
+        );
+      case "SUCCESS":
+        return (
+          <Button black disabled state="SUCCESS">
+            🎉
+          </Button>
+        );
+      default:
+        return (
+          <Button black onClick={sendEmail}>
+            Send
+          </Button>
+        );
+    }
   }
 
   return (
@@ -87,9 +106,14 @@ export default function EditLinkModal({
             value={email}
             onChange={emailInputHandler}
           />
-          <Button black onClick={sendEmail}>
-            send
-          </Button>
+          {renderEmailButton()}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {sendingState === "SUCCESS" && (
+            <p className="success-messge">
+              Email sent successfully! Please check your spam folder if you
+              can't find it in your inbox yet
+            </p>
+          )}
         </div>
         {skip && (
           <div>
@@ -110,6 +134,8 @@ export default function EditLinkModal({
         {!skip && email && (
           <Button
             onClick={() => {
+              setSendingState(null);
+              setErrorMessage(null);
               setDialogOpen(false);
               dialogRef.current.close();
             }}

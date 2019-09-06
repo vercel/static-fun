@@ -4,13 +4,15 @@ const { Get, Match, Index } = faunadb.query;
 const { client } = require("../../lib/db");
 
 module.exports = async (req, res) => {
+  console.log("FAUNADB:", process.env.faunadb);
+
   let {
     query: { page },
     cookies: { token, linkToken }
   } = req;
 
   if (!page) {
-    res.status(400).json({ error: "visit [sub].domain.tld" });
+    res.status(400).json({ error: "provide a page to query" });
   }
 
   let sessionId;
@@ -54,6 +56,7 @@ module.exports = async (req, res) => {
       res.status(404).json({ html: null, token });
     } else {
       console.error({ error });
+      res.status(500).json({ stack: error.stack, message: error.message });
     }
   }
 };

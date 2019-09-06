@@ -55,6 +55,18 @@ export default function IndexPage() {
     );
   } else if (pageData && pageData.html && !pageData.allowEdit) {
     return <RenderStaticLayout html={pageData.html} />;
+  } else if (pageData && pageData.errorCode) {
+    return (
+      <FixedCenterLayout>
+        <div>
+          <h1>HTTP Status:{pageData.errorCode}</h1>
+          <p>{pageData.message}</p>
+          <div>
+            <pre>{JSON.stringify(pageData.stack)}</pre>
+          </div>
+        </div>
+      </FixedCenterLayout>
+    );
   } else {
     return (
       <FixedCenterLayoutTopBar>

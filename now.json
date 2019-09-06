@@ -3,7 +3,7 @@
   "build": {
     "env": {
       "STATIC_FUN_SECRET": "@static-fun-secret",
-      "FAUNDADB_STATIC_FUN_KEY": "@faunadb-static-fun-key",
+      "FAUNADB_STATIC_FUN_KEY": "@faunadb-static-fun-key",
       "SENDGRID_STATIC_FUN_KEY": "@sendgrid-static-fun-key"
     }
   }

@@ -4,6 +4,7 @@
     "build": "next build"
   },
   "dependencies": {
+    "dialog-polyfill": "^0.5.0",
     "faunadb": "^2.8.0",
     "jwt-simple": "^0.5.6",
     "next": "^9.0.5",

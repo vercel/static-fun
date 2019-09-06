@@ -15,9 +15,9 @@ export default function EditLinkModal({
   const editLinkRef = useRef();
 
   useEffect(() => {
-    import("dialog-polyfill").then(dp =>
-      dp.default.registerDialog(dialogRef.current)
-    );
+    import("dialog-polyfill").then(dp => {
+      dp.default.registerDialog(dialogRef.current);
+    });
     if (dialogOpen) {
       dialogRef.current.showModal();
       editLinkRef.current.select();
@@ -47,6 +47,13 @@ export default function EditLinkModal({
 
   async function sendEmail() {
     console.log("sending email to: ", email);
+    let res = await fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, editLink })
+    });
     dialogRef.current.close();
     setDialogOpen(false);
     setSkip(false);
@@ -113,7 +120,11 @@ export default function EditLinkModal({
         {!skip && !email && <Button onClick={() => setSkip(true)}>skip</Button>}
       </div>
       <style jsx>{`
+        dialog {
+          display: none;
+        }
         dialog[open] {
+          display: block;
           background: gold;
           position: fixed;
           width: 500px;

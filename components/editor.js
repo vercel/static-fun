@@ -103,10 +103,14 @@ function Editor({ html, email, setHtml, setDialogOpen, skip }) {
           font-size: 16px;
           padding: 24px;
           border: none;
+          resize: none;
         }
         @media (max-width: 500px) {
           textarea {
             font-size: 12px;
+          }
+          div {
+            z-index: 1000;
           }
         }
       `}</style>
@@ -130,9 +134,11 @@ function OutputContainer({ content }) {
   return (
     <iframe ref={iframeRef} title="html-output">
       <style jsx>{`
-        height: 100%;
-        width: 100%;
-        border: none;
+        iframe {
+          height: 100%;
+          width: 100%;
+          border: none;
+        }
       `}</style>
     </iframe>
   );

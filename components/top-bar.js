@@ -15,6 +15,13 @@ export default function TopBar({ children }) {
         }
         p {
           font-size: 12px;
+          text-align: center;
+        }
+        @media (max-width: 500px) {
+          p {
+            font-size: 10px;
+            font-weight: normal;
+          }
         }
       `}</style>
     </div>

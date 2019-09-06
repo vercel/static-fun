@@ -199,6 +199,11 @@ export default function EditLinkModal({
           color: white;
           background: #464646;
         }
+        @media (max-width: 500px) {
+          dialog[open] {
+            width: 100%;
+          }
+        }
       `}</style>
     </dialog>
   );

@@ -14,6 +14,11 @@ export default function Button({ children, black, state, ...rest }) {
           border: none;
           cursor: pointer;
         }
+        @media (max-width: 500px) {
+          button {
+            font-size: 12px;
+          }
+        }
       `}</style>
       <style jsx>{`
         button {

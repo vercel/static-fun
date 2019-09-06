@@ -9,7 +9,7 @@ export default function EditorContainer({ html, email, editLink }) {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
-    <div className="container">
+    <div className="root-editor-container">
       <EditLinkModal
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
@@ -34,12 +34,11 @@ export default function EditorContainer({ html, email, editLink }) {
       </div>
 
       <style jsx>{`
-        .container {
+        .root-editor-container {
           display: flex;
           height: 100%;
           width: 100%;
-          margin-top: 0;
-          margin-bottom: 0;
+          margin: 0;
         }
         .editor-container {
           height: 100%;
@@ -50,6 +49,19 @@ export default function EditorContainer({ html, email, editLink }) {
           flex: 1;
           height: 100%;
           width: 100%;
+        }
+        @media (max-width: 500px) {
+          .root-editor-container {
+            flex-direction: column;
+          }
+          .editor-container {
+            height: 50%;
+            order: 1;
+          }
+          .output-container {
+            height: 50%;
+            order: 0;
+          }
         }
       `}</style>
     </div>
@@ -91,6 +103,11 @@ function Editor({ html, email, setHtml, setDialogOpen, skip }) {
           font-size: 16px;
           padding: 24px;
           border: none;
+        }
+        @media (max-width: 500px) {
+          textarea {
+            font-size: 12px;
+          }
         }
       `}</style>
     </div>

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 
-export default ({Component, pageProps}) => {
+export default function App({Component, pageProps}) {
   return <>
   <Head>
     <meta

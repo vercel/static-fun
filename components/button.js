@@ -1,18 +1,24 @@
-export default function Button({ children, black, state, ...rest }) {
+export default function Button({
+  children,
+  bg,
+  width,
+  height,
+  state,
+  fontSize,
+  ...rest
+}) {
   return (
     <button {...rest}>
       {children || "$$$"}
       <style jsx>{`
         button {
-          background: white;
-          text-transform: uppercase;
-          font-weight: bold;
+          color: white;
           font-family: Menlo, monospace;
-          height: 32px;
-          letter-spacing: 0.1rem;
-          width: 64px;
+          font-weight: bold;
           border: none;
+          border-radius: 5px;
           cursor: pointer;
+          text-decoration: none;
         }
         @media (max-width: 500px) {
           button {
@@ -22,19 +28,13 @@ export default function Button({ children, black, state, ...rest }) {
       `}</style>
       <style jsx>{`
         button {
-          color: ${black ? "white" : "black"};
-          background: ${black ? "black" : "white"};
+          background: ${bg};
+          font-size: ${fontSize || "18"}px;
+          width: ${width || "64"}px;
+          height: ${height || "40"}px;
         }
         button:disabled {
           cursor: ${state === "SAVING" ? "wait" : "pointer"};
-          text-decoration: none;
-        }
-        button:hover {
-          text-decoration: ${state !== "SAVING" &&
-          state !== "ERROR" &&
-          state !== "SUCCESS"
-            ? "underline"
-            : "none"};
         }
       `}</style>
     </button>

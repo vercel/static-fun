@@ -11,7 +11,7 @@ export default function EditLinkModal({
   skip,
   setSkip
 }) {
-  const [sendingState, setSendingState] = useState();
+  const [sendingState, setSendingState] = useState("ERROR");
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
@@ -58,26 +58,26 @@ export default function EditLinkModal({
     switch (sendingState) {
       case "SENDING":
         return (
-          <Button black disabled state="SENDING">
+          <Button bg="#CDAE8F" fontSize={24} disabled state="SENDING">
             ⏳
           </Button>
         );
       case "ERROR":
         return (
-          <Button black onClick={sendEmail} state="ERROR">
+          <Button bg="#000000" onClick={sendEmail} fontSize={24} state="ERROR">
             ❌
           </Button>
         );
       case "SUCCESS":
         return (
-          <Button black disabled state="SUCCESS">
+          <Button bg="#0085FF" disabled fontSize={24} state="SUCCESS">
             🎉
           </Button>
         );
       default:
         return (
-          <Button black onClick={sendEmail}>
-            Send
+          <Button bg="#9B51E0" fontSize={24} onClick={sendEmail}>
+            💌
           </Button>
         );
     }
@@ -108,13 +108,14 @@ export default function EditLinkModal({
           />
           {renderEmailButton()}
           {errorMessage && <p className="error-message">{errorMessage}</p>}
-          {sendingState === "SUCCESS" && (
-            <p className="success-messge">
-              Email sent successfully! Please check your spam folder if you
-              can't find it in your inbox yet
-            </p>
-          )}
         </div>
+        {sendingState === "SUCCESS" && (
+          <p className="success-messge">
+            Email sent successfully! Please check your spam folder if you can't
+            find it in your inbox yet
+          </p>
+        )}
+
         {skip && (
           <div>
             <p>
@@ -132,7 +133,7 @@ export default function EditLinkModal({
           </div>
         )}
         {!skip && email && (
-          <Button
+          <p
             onClick={() => {
               setSendingState(null);
               setErrorMessage(null);
@@ -140,10 +141,10 @@ export default function EditLinkModal({
               dialogRef.current.close();
             }}
           >
-            close
-          </Button>
+            Close
+          </p>
         )}
-        {!skip && !email && <Button onClick={() => setSkip(true)}>skip</Button>}
+        {!skip && !email && <p onClick={() => setSkip(true)}>Skip →</p>}
       </div>
       <style jsx>{`
         dialog {
@@ -184,15 +185,22 @@ export default function EditLinkModal({
           padding: 16px;
           font-weight: bold;
         }
+        .input-container {
+          display: flex;
+          align-items: center;
+        }
         input {
           color: black;
           background: white;
-          height: 32px;
+          height: 40px;
           width: 286px;
           font-weight: bold;
           font-family: Menlo;
           border: none;
           padding: 8px;
+          margin-right: 8px;
+          border-radius: 3px;
+          border: 1px solid black;
         }
 
         .edit-link input {

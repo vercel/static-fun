@@ -3,7 +3,7 @@ import Spinner from "../components/spinner";
 
 import {
   FixedCenterLayout,
-  FixedCenterLayoutTopBar,
+  WelcomeLayout,
   EditorLayout,
   RenderStaticLayout
 } from "../components/layouts";
@@ -37,7 +37,7 @@ export default function IndexPage() {
       </FixedCenterLayout>
     );
   }
-  
+
   if (pageData && pageData.html === null) {
     return (
       <EditorLayout
@@ -47,7 +47,7 @@ export default function IndexPage() {
       />
     );
   }
-  
+
   if (pageData && pageData.html && pageData.allowEdit) {
     return (
       <EditorLayout
@@ -57,11 +57,11 @@ export default function IndexPage() {
       />
     );
   }
-  
+
   if (pageData && pageData.html && !pageData.allowEdit) {
     return <RenderStaticLayout html={pageData.html} />;
   }
-  
+
   if (pageData && pageData.errorCode) {
     return (
       <FixedCenterLayout>
@@ -76,9 +76,5 @@ export default function IndexPage() {
     );
   }
 
-  return (
-    <FixedCenterLayoutTopBar>
-      <p>Welcome to static.fun</p>
-    </FixedCenterLayoutTopBar>
-  );
+  return <WelcomeLayout />;
 }

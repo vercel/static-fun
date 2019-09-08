@@ -31,24 +31,55 @@ export default function SaveBar({
     switch (saveState) {
       case "SAVING":
         return (
-          <Button disabled state="SAVING">
+          <Button
+            bg="#CDAE8F"
+            width={80}
+            height={36}
+            fontSize={24}
+            disabled
+            state="SAVING"
+          >
             ⏳
           </Button>
         );
       case "ERROR":
         return (
-          <Button disabled state="ERROR">
+          <Button
+            bg="#000000"
+            width={80}
+            height={36}
+            fontSize={24}
+            onClick={savePage}
+            state="ERROR"
+          >
             ❌
           </Button>
         );
       case "SUCCESS":
         return (
-          <Button disabled state="SUCCESS">
+          <Button
+            bg="#0085FF"
+            width={80}
+            height={36}
+            fontSize={24}
+            disabled
+            state="SUCCESS"
+          >
             🎉
           </Button>
         );
       default:
-        return <Button onClick={savePage}>Save</Button>;
+        return (
+          <Button
+            width={80}
+            height={36}
+            bg="#FF0080"
+            fontSize={14}
+            onClick={savePage}
+          >
+            SAVE
+          </Button>
+        );
     }
   }
 

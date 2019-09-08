@@ -1,7 +1,6 @@
 import fetch from "node-fetch";
 
 const SENDGRID_MAIL_API = "https://api.sendgrid.com/v3/mail/send";
-console.log("sendgrid:", process.env.sendgrid);
 
 module.exports = async (req, res) => {
   const { email, editLink } = req.body;
@@ -34,7 +33,7 @@ module.exports = async (req, res) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.sendgrid}`
+        Authorization: `Bearer ${process.env.SENDGRID_STATIC_FUN_KEY}`
       },
       body: JSON.stringify(emailBody)
     });

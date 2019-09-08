@@ -11,7 +11,7 @@ export default function EditLinkModal({
   skip,
   setSkip
 }) {
-  const [sendingState, setSendingState] = useState("ERROR");
+  const [sendingState, setSendingState] = useState();
   const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 

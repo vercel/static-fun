@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 
 export default function Spinner({ delay }) {
   const [showSpinner, setShowSpinner] = useState(false);
-  let timeout;
 
   useEffect(() => {
-    timeout = setTimeout(() => setShowSpinner(true), delay);
+    const timeout = setTimeout(() => setShowSpinner(true), delay);
     return () => clearInterval(timeout);
   }, []);
 

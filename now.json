@@ -1,9 +1,11 @@
 {
   "version": 2,
+  "env": {
+    "FAUNADB_STATIC_FUN_KEY": "@faunadb-static-fun-key"
+  },
   "build": {
     "env": {
       "STATIC_FUN_SECRET": "@static-fun-secret",
-      "FAUNADB_STATIC_FUN_KEY": "@faunadb-static-fun-key",
       "SENDGRID_STATIC_FUN_KEY": "@sendgrid-static-fun-key"
     }
   }

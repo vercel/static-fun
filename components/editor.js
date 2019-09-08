@@ -139,6 +139,9 @@ function OutputContainer({ content }) {
           width: 100%;
           border: none;
         }
+        @media (max-width: 500px;) {
+          height: 50%;
+        }
       `}</style>
     </iframe>
   );

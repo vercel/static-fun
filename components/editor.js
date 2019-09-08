@@ -97,7 +97,7 @@ function Editor({ html, email, setHtml, setDialogOpen, skip }) {
         textarea {
           width: 100%;
           height: 100%;
-          background: #000;
+          background: #222222;
           color: #fff;
           font-family: Menlo, monospace;
           font-size: 16px;

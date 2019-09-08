@@ -56,14 +56,14 @@ export default function SaveBar({
     <div className="save-bar-container">
       <p>Last saved _ min ago</p>
       <div className="edit-link-and-save">
-        <p onClick={() => setDialogOpen(true)}>show edit link</p>
+        <p onClick={() => setDialogOpen(true)}>🔏 EDIT LINK</p>
         {renderButton()}
       </div>
       <style jsx>{`
         .save-bar-container {
           padding: 16px;
           height: 48px;
-          background: rebeccapurple;
+          background: #2bbaf8;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -81,10 +81,6 @@ export default function SaveBar({
           justify-content: space-evenly;
           align-items: center;
         }
-        .edit-link-and-save p {
-          color: springgreen;
-        }
-
         @media (max-width: 500px) {
           .save-bar-container p {
             font-size: 10px;

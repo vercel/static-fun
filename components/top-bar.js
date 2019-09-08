@@ -1,21 +1,28 @@
 import GitHub from "./github";
+import Link from "next/link";
 
-export default function TopBar({ url, link }) {
+export default function TopBar({ url, info }) {
   return (
     <div className="top-bar-container">
       <div className="url-and-info">
-        <h2>{url || "static.fun"}</h2>
-        <p>
-          is an open source demo to demonstrate ZEIT's support of wildcard
-          domains.{"  "}
-          <a href="https://zeit.co/blog/wildcard-domains">Learn More →</a>
-        </p>
+        <a href="https://static.fun">
+          <h2>static.fun</h2>
+        </a>
+        {info && (
+          <p>
+            is an open source demo to demonstrate ZEIT's support of wildcard
+            domains.{"  "}
+            <a href="https://zeit.co/blog/wildcard-domains">Learn More →</a>
+          </p>
+        )}
       </div>
       <div className="view-source">
-        <a href="https://github.com/zeit/static-fun">View Source</a>
-        <div>
-          <GitHub />
-        </div>
+        <a href="https://github.com/zeit/static-fun">
+          <p href="https://github.com/zeit/static-fun">VIEW SOURCE</p>
+          <div>
+            <GitHub />
+          </div>
+        </a>
       </div>
       <style jsx>{`
         .top-bar-container {
@@ -33,6 +40,10 @@ export default function TopBar({ url, link }) {
           display: flex;
           align-items: center;
         }
+        .url-and-info .url {
+          font-size: 24px;
+          font-weight: bold;
+        }
         p {
           font-weight: normal;
           font-family: Menlo, monospace;
@@ -45,15 +56,19 @@ export default function TopBar({ url, link }) {
           color: white;
         }
         .view-source {
-          display: flex;
           border-left: 1px solid white;
+        }
+
+        .view-source p {
+          font-weight: bold;
+          font-size: 14px;
+        }
+
+        .view-source a {
+          display: flex;
           align-items: center;
         }
-        .view-source a {
-          font-family: Menlo, monospace;
-          font-size: 14px;
-          text-transform: uppercase;
-        }
+
         .view-source * {
           margin-left: 8px;
         }

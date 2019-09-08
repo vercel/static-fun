@@ -70,9 +70,7 @@ module.exports = async (req, res) => {
       }
     }
   }
-  // if doens't exist, make new page with sessionId, email, and data
-
-  //  const updatedToken = jwt.encode({ sessionId, email }, process.env.secret);
+  // if doesn't exist, make new page with sessionId, email, and data
 
   res.setHeader("Set-Cookie", `token=${token}`);
   res.status(200).json({ editLink: `${req.headers.host}/?edit=${token}'` });

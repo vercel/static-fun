@@ -4,8 +4,6 @@ const { Get, Match, Index } = faunadb.query;
 const { client } = require("../../lib/db");
 
 module.exports = async (req, res) => {
-  console.log("FAUNADB:", process.env.faunadb);
-
   let {
     query: { page },
     cookies: { token, linkToken }

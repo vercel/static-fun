@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Head from "next/head";
 import Spinner from "../components/spinner";
 
 import {
@@ -37,7 +36,9 @@ export default function IndexPage() {
         <Spinner delay={300} />
       </FixedCenterLayout>
     );
-  } else if (pageData && pageData.html === null) {
+  }
+  
+  if (pageData && pageData.html === null) {
     return (
       <EditorLayout
         html={defaultMarkup}
@@ -45,7 +46,9 @@ export default function IndexPage() {
         editLink={pageData.editLink}
       />
     );
-  } else if (pageData && pageData.html && pageData.allowEdit) {
+  }
+  
+  if (pageData && pageData.html && pageData.allowEdit) {
     return (
       <EditorLayout
         html={pageData.html}
@@ -53,9 +56,13 @@ export default function IndexPage() {
         editLink={pageData.editLink}
       />
     );
-  } else if (pageData && pageData.html && !pageData.allowEdit) {
+  }
+  
+  if (pageData && pageData.html && !pageData.allowEdit) {
     return <RenderStaticLayout html={pageData.html} />;
-  } else if (pageData && pageData.errorCode) {
+  }
+  
+  if (pageData && pageData.errorCode) {
     return (
       <FixedCenterLayout>
         <div>
@@ -67,11 +74,11 @@ export default function IndexPage() {
         </div>
       </FixedCenterLayout>
     );
-  } else {
-    return (
-      <FixedCenterLayoutTopBar>
-        <p>Welcome to static.fun</p>
-      </FixedCenterLayoutTopBar>
-    );
   }
+
+  return (
+    <FixedCenterLayoutTopBar>
+      <p>Welcome to static.fun</p>
+    </FixedCenterLayoutTopBar>
+  );
 }

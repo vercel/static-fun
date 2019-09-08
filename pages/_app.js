@@ -27,9 +27,6 @@ export default function App({ Component, pageProps }) {
           height: 100vh;
           width: 100vw;
         }
-        #__next(:global) {
-          height: 100vh;
-        }
       `}</style>
       <Component {...pageProps} />
     </>

@@ -1,7 +1,6 @@
 import GitHub from "./github";
-import Link from "next/link";
 
-export default function TopBar({ url, info }) {
+export default function TopBar({ info }: { info?: boolean }) {
   return (
     <div className="top-bar-container">
       <div className="url-and-info">
@@ -18,7 +17,7 @@ export default function TopBar({ url, info }) {
       </div>
       <div className="view-source">
         <a href="https://github.com/zeit/static-fun">
-          <p href="https://github.com/zeit/static-fun">VIEW SOURCE</p>
+          <p>VIEW SOURCE</p>
           <div>
             <GitHub />
           </div>

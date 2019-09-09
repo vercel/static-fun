@@ -99,12 +99,12 @@ export default function SaveBar({
   }
 
   function renderLastSaved() {
-    if (!lastSaved) {
-      return "Last saved _ min ago";
-    } else {
+    if (lastSaved) {
       return `Last saved ${ms((currentTime || Date.now()) - lastSaved, {
         long: true
       })} ago`;
+    } else {
+      return null;
     }
   }
 

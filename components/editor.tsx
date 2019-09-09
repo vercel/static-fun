@@ -142,11 +142,12 @@ function OutputContainer({ content }) {
   }
 
   return (
-    <iframe ref={iframeRef} title="html-output">
+    <iframe ref={iframeRef} title="html-output" scrolling="yes">
       <style jsx>{`
         iframe {
           height: 100%;
           width: 100%;
+          overflow: scroll;
           border: none;
         }
         @media (max-width: 500px;) {

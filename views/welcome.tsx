@@ -8,18 +8,28 @@ import TopBar from "../components/top-bar";
 export function Welcome() {
   const [pageToSearch, setPageToSearch] = useState("");
   const [pageExists, setPageExists] = useState();
-  const [searchState, setSearchState] = useState();
+  const [searchState, setSearchState] = useState("");
+  const [errorMessage, setErrorMessage] = useState();
 
-  async function checkIfPageExists() {
+  async function checkIfPageExists(e) {
+    e.preventDefault();
     if (pageToSearch) {
       setSearchState("SEARCHING");
-      let res = await fetch(`/api/get-page?page=${pageToSearch}`);
-      if (res.status === 200) {
-        setSearchState("ERROR");
-        setPageExists({ name: `${pageToSearch}.static.fun` });
-      }
-      if (res.status === 404) {
-        window.location.href = `https://${pageToSearch}.static.fun`;
+      try {
+        let res = await fetch(`/api/get-page?page=${pageToSearch}`);
+        if (res.status === 200) {
+          setSearchState("ERROR");
+          setPageExists({ name: `${pageToSearch}.static.fun` });
+        }
+        if (res.status === 404) {
+          window.location.href = `https://${pageToSearch}.static.fun`;
+        } else {
+          let { message, stack } = await res.json();
+          throw new Error(message);
+        }
+      } catch (e) {
+        setErrorMessage(e.message);
+        setSearchState("NETWORK_ERROR");
       }
     }
   }
@@ -44,6 +54,12 @@ export function Welcome() {
         return (
           <Button bg="#f3424d" disabled fontSize={32}>
             →
+          </Button>
+        );
+      case "NETWORK_ERROR":
+        return (
+          <Button bg="#000000" onClick={checkIfPageExists} fontSize={24}>
+            ❌
           </Button>
         );
       default:
@@ -78,6 +94,7 @@ export function Welcome() {
         <form className="form" onSubmit={checkIfPageExists}>
           <h2>To start go to</h2>
           <Input
+            required
             value={pageToSearch}
             onChange={pageSearchInputHandler}
             error={Boolean(searchState === "ERROR")}
@@ -86,6 +103,7 @@ export function Welcome() {
           />
           <span className="suffix">.static.fun</span>
           {renderButton()}
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           {pageExists && (
             <p className="page-exists">
               🚨
@@ -149,7 +167,8 @@ export function Welcome() {
           margin-right: 8px;
         }
 
-        .form .page-exists {
+        .form .page-exists,
+        .form .error-message {
           color: red;
           margin-top: 8px;
           font-family: Menlo, monospace;

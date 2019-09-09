@@ -1,7 +1,13 @@
 {
   "version": 2,
+  "build": {
+    "env": {
+      "SENTRY_DSN": "@sentry-static-fun-dsn"
+    }
+  },
   "env": {
     "FAUNADB_STATIC_FUN_KEY": "@faunadb-static-fun-key",
-    "SENDGRID_STATIC_FUN_KEY": "@sendgrid-static-fun-key"
+    "SENDGRID_STATIC_FUN_KEY": "@sendgrid-static-fun-key",
+    "SENTRY_DSN": "@sentry-static-fun-dsn"
   }
 }

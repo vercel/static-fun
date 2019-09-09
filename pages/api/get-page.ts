@@ -23,7 +23,6 @@ export default async (req, res) => {
   let sessionId;
 
   if (linkToken) {
-    console.log({ linkToken });
     sessionId = linkToken;
     res.setHeader("Set-Cookie", `token=${linkToken}`);
   } else if (token && !linkToken) {
@@ -35,6 +34,7 @@ export default async (req, res) => {
       token = sessionId;
       res.setHeader("Set-Cookie", `token=${token}`);
     } catch (e) {
+      console.error({ stack: e.stack, message: e.message });
       throw new Error(e.message);
     }
   }
@@ -43,11 +43,6 @@ export default async (req, res) => {
     let {
       data: { sessionId: savedPageSessionId, html }
     } = (await client.query(Get(Match(Index("page_by_name"), page)))) as any;
-
-    console.log({
-      sessionId,
-      savedPageSessionId
-    });
 
     if (savedPageSessionId === sessionId) {
       res.status(200).json({ html, allowEdit: true, token });

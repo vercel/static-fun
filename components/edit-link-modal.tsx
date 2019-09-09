@@ -29,23 +29,25 @@ export default function EditLinkModal({
   }, [dialogOpen]);
 
   async function sendEmail() {
-    setSendingState("SENDING");
-    setErrorMessage(null);
-    let res = await fetch("/api/send-email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email, editLink })
-    });
-    if (res.ok) {
-      setSendingState("SUCCESS");
-      localStorage.setItem("email", email);
-    }
-    if (!res.ok) {
-      setSendingState("ERROR");
-      let { message } = await res.json();
-      setErrorMessage(message);
+    if (email) {
+      setSendingState("SENDING");
+      setErrorMessage(null);
+      let res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, editLink })
+      });
+      if (res.ok) {
+        setSendingState("SUCCESS");
+        localStorage.setItem("email", email);
+      }
+      if (!res.ok) {
+        setSendingState("ERROR");
+        let { message } = await res.json();
+        setErrorMessage(message);
+      }
     }
   }
 
@@ -75,7 +77,12 @@ export default function EditLinkModal({
         );
       default:
         return (
-          <Button bg="#9B51E0" fontSize={24} onClick={sendEmail}>
+          <Button
+            bg="#9B51E0"
+            disabled={Boolean(email)}
+            fontSize={24}
+            onClick={sendEmail}
+          >
             💌
           </Button>
         );

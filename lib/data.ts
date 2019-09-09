@@ -5,6 +5,10 @@ async function getPageData(setPageData, href) {
 
   if ((!isDev && splitHost.length === 3) || (isDev && splitHost.length === 2)) {
     let page = splitHost[0];
+    if (page === "www") {
+      setPageData(null);
+      return;
+    }
     let res = await fetch(`/api/get-page?page=${page}`);
     if (!res.ok && res.status !== 404) {
       let { stack, message } = await res.json();

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 import Spinner from "../components/spinner";
 import { defaultMarkup, getPageData } from "../lib/data";
@@ -10,14 +11,16 @@ import { Welcome } from "../views/welcome";
 export default function IndexPage() {
   const [pageData, setPageData] = useState();
   const [email, setEmail] = useState();
+  const router = useRouter();
 
   useEffect(() => {
     let href = window.location.href;
-    let linkToken = new URLSearchParams(window.location.search).get("edit");
+
+    let linkToken = router.query.edit;
 
     if (linkToken) {
       document.cookie = `linkToken=${linkToken}`;
-      window.history.pushState({ linkToken }, "", "/");
+      router.push("/");
     }
 
     if (!pageData) getPageData(setPageData, href);

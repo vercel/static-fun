@@ -9,9 +9,12 @@ export default function TopBar({
 }) {
   return (
     <div className="top-bar-container">
-      <div className="url-and-info">
+      <div className="logo-and-info">
         <a href="https://static.fun">
-          <h2>static.fun</h2>
+          <h2>
+            <span className="static">static</span>
+            <span className="fun">.fun</span>
+          </h2>
         </a>
         {info && (
           <p>
@@ -41,13 +44,12 @@ export default function TopBar({
           justify-content: space-between;
           padding: 8px;
         }
-        .url-and-info {
+        .logo-and-info {
           display: flex;
           align-items: center;
         }
-        .url-and-info .url {
-          font-size: 24px;
-          font-weight: bold;
+        .logo-and-info .fun {
+          font-family: "Comic Sans MS";
         }
         p {
           font-weight: normal;

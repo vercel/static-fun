@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 
-import {
-  EditorLayout,
-  FixedCenterLayout,
-  RenderStaticLayout
-} from "../components/layouts";
 import Spinner from "../components/spinner";
 import { defaultMarkup, getPageData } from "../lib/data";
+import { EditorLayout } from "../views/editor";
+import { FixedCenterLayout } from "../views/fixed-center";
+import { RenderStaticLayout } from "../views/static-layout";
 import { Welcome } from "../views/welcome";
 
 export default function IndexPage() {

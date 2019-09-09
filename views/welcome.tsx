@@ -96,6 +96,7 @@ export function Welcome() {
           <h2>To start go to</h2>
           <Input
             required
+            color="#9b51e0"
             value={pageToSearch}
             onChange={pageSearchInputHandler}
             error={Boolean(searchState === "ERROR")}

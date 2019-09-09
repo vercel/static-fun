@@ -1,4 +1,4 @@
-export default function Input({ width, error, ...props }) {
+export default function Input({ width, error, color, ...props }) {
   return (
     <div>
       <input type="text" {...props} />
@@ -14,10 +14,14 @@ export default function Input({ width, error, ...props }) {
           font-size: 18px;
           padding: 8px;
         }
+        input::placeholder {
+          color: initial;
+        }
       `}</style>
       <style jsx>{`
         input {
           border: 1px solid ${error ? "#f3424d" : "#cccccc"};
+          ${color ? "color: " + color + ";" : ""}
         }
       `}</style>
     </div>

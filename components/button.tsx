@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Button({
   children,
   bg,
@@ -6,6 +8,13 @@ export default function Button({
   state,
   fontSize,
   ...rest
+}: {
+  children: React.ReactNode;
+  fontSize?: number;
+  width?: string;
+  height?: string;
+  state?: string;
+  bg: string;
 }) {
   return (
     <button {...rest}>

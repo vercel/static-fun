@@ -1,5 +1,7 @@
 import fetch from "node-fetch";
+
 import { templateId as sendgridTemplateId } from "../../sendgrid.json";
+
 const SENDGRID_MAIL_API = "https://api.sendgrid.com/v3/mail/send";
 
 export default async (req, res) => {

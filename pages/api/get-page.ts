@@ -1,5 +1,6 @@
-import uid from "uid-promise";
 import faunadb from "faunadb";
+import uid from "uid-promise";
+
 import { client } from "../../lib/db";
 
 const { Get, Match, Index } = faunadb.query;

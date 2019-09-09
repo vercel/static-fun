@@ -1,8 +1,9 @@
-import React from "react";
 import Head from "next/head";
-import TopBar from "../components/top-bar";
-import Input from "../components/input";
+import React from "react";
+
 import Button from "../components/button";
+import Input from "../components/input";
+import TopBar from "../components/top-bar";
 
 export function Welcome() {
   return (

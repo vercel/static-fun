@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import Spinner from "../components/spinner";
 
 import {
-  FixedCenterLayout,
   EditorLayout,
+  FixedCenterLayout,
   RenderStaticLayout
 } from "../components/layouts";
+import Spinner from "../components/spinner";
+import { defaultMarkup, getPageData } from "../lib/data";
 import { Welcome } from "../views/welcome";
-import { getPageData, defaultMarkup } from "../lib/data";
 
 export default function IndexPage() {
   const [pageData, setPageData] = useState();

@@ -66,7 +66,7 @@ export default function IndexPage() {
     return (
       <FixedCenterLayout>
         <div>
-          <h1>HTTP Status:{pageData.errorCode}</h1>
+          <h1>HTTP Status: {pageData.errorCode}</h1>
           <p>{pageData.message}</p>
           <div>
             <pre>{JSON.stringify(pageData.stack)}</pre>

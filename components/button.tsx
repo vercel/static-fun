@@ -8,13 +8,16 @@ export default function Button({
   state,
   fontSize,
   ...rest
-}: {
+}: React.DetailedHTMLProps<
+  React.ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> & {
   children: React.ReactNode;
   fontSize?: number;
-  width?: string;
-  height?: string;
+  width?: number;
+  height?: number;
   state?: string;
-  bg: string;
+  bg?: string;
 }) {
   return (
     <button {...rest}>
@@ -37,7 +40,7 @@ export default function Button({
       `}</style>
       <style jsx>{`
         button {
-          background: ${bg};
+          background: ${bg || "inherit"};
           font-size: ${fontSize || "18"}px;
           width: ${width || "64"}px;
           height: ${height || "40"}px;

@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 
 const SENDGRID_MAIL_API = "https://api.sendgrid.com/v3/mail/send";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const { email, editLink } = req.body;
   console.log({ email, editLink });
 

@@ -1,9 +1,10 @@
-const uid = require("uid-promise");
-const faunadb = require("faunadb");
-const { Get, Match, Index } = faunadb.query;
-const { client } = require("../../lib/db");
+import uid from "uid-promise";
+import faunadb from "faunadb";
+import { client } from "../../lib/db";
 
-module.exports = async (req, res) => {
+const { Get, Match, Index } = faunadb.query;
+
+export default async (req, res) => {
   let {
     query: { page },
     cookies: { token, linkToken }
@@ -35,7 +36,7 @@ module.exports = async (req, res) => {
   try {
     let {
       data: { sessionId: savedPageSessionId, html, email }
-    } = await client.query(Get(Match(Index("page_by_name"), page)));
+    } = (await client.query(Get(Match(Index("page_by_name"), page)))) as any;
 
     console.log({
       sessionId,

@@ -4,7 +4,6 @@ import Button from "./button";
 export default function EditLinkModal({
   dialogOpen,
   setDialogOpen,
-  setEmailSaved,
   email,
   setEmail,
   editLink,
@@ -12,11 +11,10 @@ export default function EditLinkModal({
   setSkip
 }) {
   const [sendingState, setSendingState] = useState();
-  const [successMessage, setSuccessMessage] = useState();
   const [errorMessage, setErrorMessage] = useState();
 
-  const dialogRef = useRef();
-  const editLinkRef = useRef();
+  const dialogRef = useRef<HTMLDialogElement>();
+  const editLinkRef = useRef<HTMLInputElement>();
 
   useEffect(() => {
     import("dialog-polyfill").then(dp => {

@@ -15,7 +15,6 @@ export default function EditorContainer({ html, email, editLink }) {
         setDialogOpen={setDialogOpen}
         email={_email}
         setEmail={setEmail}
-        html={_html}
         editLink={editLink}
         skip={skip}
         setSkip={setSkip}
@@ -119,7 +118,7 @@ function Editor({ html, email, setHtml, setDialogOpen, skip }) {
 }
 
 function OutputContainer({ content }) {
-  const iframeRef = useRef();
+  const iframeRef = useRef<HTMLIFrameElement>();
 
   useEffect(() => {
     updateIframe();

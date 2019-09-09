@@ -6,9 +6,9 @@ async function getPageData(setPageData, href) {
   if ((!isDev && splitHost.length === 3) || (isDev && splitHost.length === 2)) {
     let page = splitHost[0];
     let res = await fetch(`/api/get-page?page=${page}`);
-    if (!res.ok && !res.statusCode === 404) {
+    if (!res.ok && res.status !== 404) {
       let { stack, message } = await res.json();
-      setPageData({ errorCode: res.statusCode, stack, message });
+      setPageData({ errorCode: res.status, stack, message });
     } else {
       let { html, allowEdit, token } = await res.json();
       setPageData({ html, allowEdit, editLink: `${href}?edit=${token}` });
@@ -54,7 +54,4 @@ const defaultMarkup = `
 </style>
 `;
 
-module.exports = {
-  getPageData,
-  defaultMarkup
-};
+export { getPageData, defaultMarkup };

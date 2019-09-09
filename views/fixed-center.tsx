@@ -11,6 +11,7 @@ export function FixedCenterLayout({
     <main>
       <Head>
         <title>{title || "Static Fun"}</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
       </Head>
       <div className="children-container">{children}</div>
       <style jsx>{`

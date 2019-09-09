@@ -75,6 +75,7 @@ export function Welcome() {
     <main>
       <Head>
         <title>Static Fun</title>
+        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
       </Head>
       <TopBar grayScale={Boolean(pageExists)} />
       <div className="welcome-container">

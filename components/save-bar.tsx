@@ -1,4 +1,7 @@
+import { useState, useEffect } from "react";
+
 import Button from "./button";
+import ms from "ms";
 
 export default function SaveBar({
   setDialogOpen,
@@ -6,6 +9,10 @@ export default function SaveBar({
   saveState,
   setSaveState
 }) {
+  const [lastSaved, setLastSaved] = useState();
+  const [currentTime, setCurrentTime] = useState();
+  const [currentTimeInterval, setCurrentTimeInterval] = useState();
+
   async function savePage() {
     console.log("saving page");
     setSaveState("SAVING");
@@ -19,12 +26,29 @@ export default function SaveBar({
       });
       if (res.ok) {
         setSaveState("SUCCESS");
+        setLastSaved(Date.now());
       }
     } catch ({ name, message }) {
       setSaveState("ERROR");
       console.error(`${name}: ${message}`);
     }
   }
+
+  useEffect(() => {
+    if (lastSaved) {
+      setCurrentTime(Date.now());
+      setCurrentTimeInterval(
+        setInterval(() => {
+          setCurrentTime(Date.now());
+        }, 10000)
+      );
+    }
+    return () => {
+      if (currentTimeInterval) {
+        clearInterval(currentTimeInterval);
+      }
+    };
+  }, [lastSaved]);
 
   function renderButton() {
     switch (saveState) {
@@ -74,9 +98,19 @@ export default function SaveBar({
     }
   }
 
+  function renderLastSaved() {
+    if (!lastSaved) {
+      return "Last saved _ min ago";
+    } else {
+      return `Last saved ${ms((currentTime || Date.now()) - lastSaved, {
+        long: true
+      })} ago`;
+    }
+  }
+
   return (
     <div className="save-bar-container">
-      <p>Last saved _ min ago</p>
+      <p>{renderLastSaved()}</p>
       <div className="edit-link-and-save">
         <p onClick={() => setDialogOpen(true)}>🔏 EDIT LINK</p>
         {renderButton()}

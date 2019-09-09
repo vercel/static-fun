@@ -113,6 +113,7 @@ export function WelcomeLayout() {
           width: 100%;
           background-image: url("/static/emoji-bg.svg");
           background-repeat: no-repeat;
+          background-size: cover;
         }
       `}</style>
     </main>

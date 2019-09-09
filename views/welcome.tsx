@@ -1,17 +1,66 @@
 import Head from "next/head";
-import React from "react";
+import { useState } from "react";
 
 import Button from "../components/button";
 import Input from "../components/input";
 import TopBar from "../components/top-bar";
 
 export function Welcome() {
+  const [pageToSearch, setPageToSearch] = useState("");
+  const [pageExists, setPageExists] = useState();
+  const [searchState, setSearchState] = useState();
+
+  async function checkIfPageExists() {
+    if (pageToSearch) {
+      setSearchState("SEARCHING");
+      let res = await fetch(`/api/get-page?page=${pageToSearch}`);
+      if (res.status === 200) {
+        setSearchState("ERROR");
+        setPageExists({ name: `${pageToSearch}.static.fun` });
+      }
+      if (res.status === 404) {
+        window.location.href = `https://${pageToSearch}.static.fun`;
+      }
+    }
+  }
+
+  function pageSearchInputHandler(e) {
+    if (searchState) {
+      setSearchState("");
+      setPageExists(null);
+    }
+    setPageToSearch(e.target.value);
+  }
+
+  function renderButton() {
+    switch (searchState) {
+      case "SEARCHING":
+        return (
+          <Button bg="#cdae8f" disabled fontSize={32}>
+            ⏳
+          </Button>
+        );
+      case "ERROR":
+        return (
+          <Button bg="#f3424d" disabled fontSize={32}>
+            →
+          </Button>
+        );
+      default:
+        return (
+          <Button bg="#9b51e0" onClick={checkIfPageExists} fontSize={32}>
+            →
+          </Button>
+        );
+    }
+  }
+
   return (
     <main>
       <Head>
         <title>Static Fun</title>
       </Head>
-      <TopBar />
+      <TopBar grayScale={Boolean(pageExists)} />
       <div className="welcome-container">
         <div className="welcome">
           <h1>Welcome to</h1>
@@ -26,14 +75,25 @@ export function Welcome() {
             <a href="https://zeit.co/blog/wildcard-domains">wildcard domains</a>
           </p>
         </div>
-        <div className="form">
+        <form className="form" onSubmit={checkIfPageExists}>
           <h2>To start go to</h2>
-          <Input placeholder="my-fun-page" width={180} />
+          <Input
+            value={pageToSearch}
+            onChange={pageSearchInputHandler}
+            error={Boolean(searchState === "ERROR")}
+            placeholder="my-fun-page"
+            width={180}
+          />
           <span className="suffix">.static.fun</span>
-          <Button bg="#9b51e0" fontSize={32}>
-            →
-          </Button>
-        </div>
+          {renderButton()}
+          {pageExists && (
+            <p className="page-exists">
+              🚨
+              <a href={`https://${pageExists.name}`}>{pageExists.name}</a>{" "}
+              taken! Try another one.
+            </p>
+          )}
+        </form>
         <div className="emojis" />
       </div>
       <style jsx>{`
@@ -60,7 +120,7 @@ export function Welcome() {
           color: #9b51e0;
         }
         .welcome .fun {
-          font-family: "Comic Sans MS";
+          font-family: "Comic Sans MS", monospace;
         }
         .welcome p {
           margin-top: 32px;
@@ -75,24 +135,41 @@ export function Welcome() {
         }
         .form {
           text-align: center;
-          margin-top: 48px;
+          margin-top: 0;
+          height: 100px;
         }
         .form h2 {
           margin-bottom: 16px;
         }
         .form .suffix {
-          font-family: "Comic Sans MS";
+          font-family: "Comic Sans MS", monospace;
           font-weight: bold;
           font-size: 18px;
           margin-left: 4px;
           margin-right: 8px;
         }
+
+        .form .page-exists {
+          color: red;
+          margin-top: 8px;
+          font-family: Menlo, monospace;
+          text-transform: uppercase;
+        }
+        .form .page-exists a {
+          color: red;
+        }
         .emojis {
-          height: 100%;
+          height: 300px;
           width: 100%;
           background-image: url("/static/emoji-bg.svg");
           background-repeat: no-repeat;
           background-size: cover;
+        }
+      `}</style>
+      <style jsx>{`
+        .welcome,
+        .emojis {
+          filter: ${pageExists ? "grayscale(1)" : "none"};
         }
       `}</style>
     </main>

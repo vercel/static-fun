@@ -1,6 +1,12 @@
 import GitHub from "./github";
 
-export default function TopBar({ info }: { info?: boolean }) {
+export default function TopBar({
+  info,
+  grayScale
+}: {
+  info?: boolean;
+  grayScale?: boolean;
+}) {
   return (
     <div className="top-bar-container">
       <div className="url-and-info">
@@ -16,7 +22,7 @@ export default function TopBar({ info }: { info?: boolean }) {
         )}
       </div>
       <div className="view-source">
-        <a href="https://github.com/zeit/static-fun">
+        <a href="https://github.com/zeit/static-fun" target="_blank">
           <p>VIEW SOURCE</p>
           <div>
             <GitHub />
@@ -76,6 +82,11 @@ export default function TopBar({ info }: { info?: boolean }) {
             font-size: 10px;
             font-weight: normal;
           }
+        }
+      `}</style>
+      <style jsx>{`
+        .top-bar-container {
+          filter: ${grayScale ? "grayscale(1)" : "none"};
         }
       `}</style>
     </div>

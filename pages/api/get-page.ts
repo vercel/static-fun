@@ -15,6 +15,11 @@ export default async (req, res) => {
     res.status(400).json({ error: "provide a page to query" });
   }
 
+  if (page === "www") {
+    res.status(200).json({ html: null });
+    return;
+  }
+
   let sessionId;
 
   if (linkToken) {
@@ -36,7 +41,7 @@ export default async (req, res) => {
 
   try {
     let {
-      data: { sessionId: savedPageSessionId, html, email }
+      data: { sessionId: savedPageSessionId, html }
     } = (await client.query(Get(Match(Index("page_by_name"), page)))) as any;
 
     console.log({
@@ -45,10 +50,10 @@ export default async (req, res) => {
     });
 
     if (savedPageSessionId === sessionId) {
-      res.status(200).json({ html, email, allowEdit: true, token });
+      res.status(200).json({ html, allowEdit: true, token });
       return;
     } else {
-      res.status(200).json({ html, email, allowEdit: false, token });
+      res.status(200).json({ html, allowEdit: false, token });
       return;
     }
   } catch (error) {

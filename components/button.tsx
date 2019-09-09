@@ -26,7 +26,6 @@ export default function Button({
         button {
           color: white;
           font-family: Menlo, monospace;
-          font-weight: bold;
           border: none;
           border-radius: 5px;
           cursor: pointer;

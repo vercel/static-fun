@@ -1,4 +1,4 @@
-export default function Input({ width, ...props }) {
+export default function Input({ width, error, ...props }) {
   return (
     <div>
       <input type="text" {...props} />
@@ -10,10 +10,14 @@ export default function Input({ width, ...props }) {
           height: 48px;
           width: ${width || "286"}px;
           border-radius: 5px;
-          border: 1px solid #cccccc;
-          font-family: "Comic Sans MS";
+          font-family: "Comic Sans MS", monospace;
           font-size: 18px;
           padding: 8px;
+        }
+      `}</style>
+      <style jsx>{`
+        input {
+          border: 1px solid ${error ? "#f3424d" : "#cccccc"};
         }
       `}</style>
     </div>

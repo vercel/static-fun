@@ -3,10 +3,10 @@ import Spinner from "../components/spinner";
 
 import {
   FixedCenterLayout,
-  WelcomeLayout,
   EditorLayout,
   RenderStaticLayout
 } from "../components/layouts";
+import { Welcome } from "../views/welcome";
 import { getPageData, defaultMarkup } from "../lib/data";
 
 export default function IndexPage() {
@@ -76,5 +76,5 @@ export default function IndexPage() {
     );
   }
 
-  return <WelcomeLayout />;
+  return <Welcome />;
 }

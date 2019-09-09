@@ -56,6 +56,9 @@ const defaultMarkup = `
   }
   }
 </style>
+
+
+
 `;
 
 export { getPageData, defaultMarkup };

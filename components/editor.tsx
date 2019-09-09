@@ -44,6 +44,7 @@ export default function EditorContainer({ html, email, editLink }) {
           height: 100%;
           width: 100%;
           flex: 1;
+          background: #22222;
         }
         .output-container {
           flex: 1;
@@ -56,11 +57,20 @@ export default function EditorContainer({ html, email, editLink }) {
           }
           .editor-container {
             height: 50%;
-            order: 1;
+            order: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
           }
           .output-container {
             height: 50%;
-            order: 0;
+            order: 1;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
           }
         }
       `}</style>
@@ -96,7 +106,7 @@ function Editor({ html, email, setHtml, setDialogOpen, skip }) {
         }
         textarea {
           width: 100%;
-          height: 100%;
+          height: 90%;
           background: #222222;
           color: #fff;
           font-family: Menlo, monospace;

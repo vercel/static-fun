@@ -2,7 +2,13 @@ import Head from "next/head";
 import TopBar from "./top-bar";
 import EditorContainer from "./editor";
 
-export function FixedCenterLayout({ children, title }) {
+export function FixedCenterLayout({
+  children,
+  title
+}: {
+  children: React.ReactNode,
+  title?: string
+}) {
   return (
     <main>
       <Head>

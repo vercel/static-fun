@@ -15,7 +15,7 @@ export default function Input({ width, error, color, ...props }) {
           padding: 8px;
         }
         input::placeholder {
-          color: initial;
+          color: #cccccc;
         }
       `}</style>
       <style jsx>{`

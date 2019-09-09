@@ -88,7 +88,7 @@ function Editor({ html, email, setHtml, setDialogOpen, skip }) {
         saveState={saveState}
         setSaveState={setSaveState}
       />
-      <textarea value={html} onChange={onChange} />
+      <textarea value={html} onChange={onChange} spellCheck={false} />
       <style jsx>{`
         div {
           width: 100%;

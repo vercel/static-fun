@@ -44,7 +44,7 @@ export default class StaticFunApp extends App {
               "Segoe UI Emoji", "Segoe UI Symbol";
             height: 100vh;
             width: 100vw;
-            overflow: none;
+            overflow: hidden;
           }
         `}</style>
         <Component {...pageProps} />

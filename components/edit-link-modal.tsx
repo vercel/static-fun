@@ -56,19 +56,19 @@ export default function EditLinkModal({
     switch (sendingState) {
       case "SENDING":
         return (
-          <Button bg="#CDAE8F" fontSize={24} disabled state="SENDING">
+          <Button bg="#CDAE8F" fontSize={24} disabled isLoading>
             ⏳
           </Button>
         );
       case "ERROR":
         return (
-          <Button bg="#000000" onClick={sendEmail} fontSize={24} state="ERROR">
+          <Button bg="#000000" onClick={sendEmail} fontSize={24}>
             ❌
           </Button>
         );
       case "SUCCESS":
         return (
-          <Button bg="#0085FF" disabled fontSize={24} state="SUCCESS">
+          <Button bg="#0085FF" disabled fontSize={24}>
             🎉
           </Button>
         );

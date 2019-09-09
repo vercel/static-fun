@@ -37,7 +37,7 @@ export default function SaveBar({
             height={36}
             fontSize={24}
             disabled
-            state="SAVING"
+            isLoading
           >
             ⏳
           </Button>
@@ -50,21 +50,13 @@ export default function SaveBar({
             height={36}
             fontSize={24}
             onClick={savePage}
-            state="ERROR"
           >
             ❌
           </Button>
         );
       case "SUCCESS":
         return (
-          <Button
-            bg="#0085FF"
-            width={80}
-            height={36}
-            fontSize={24}
-            disabled
-            state="SUCCESS"
-          >
+          <Button bg="#0085FF" width={80} height={36} fontSize={24} disabled>
             🎉
           </Button>
         );

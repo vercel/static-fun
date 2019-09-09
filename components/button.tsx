@@ -5,8 +5,8 @@ export default function Button({
   bg,
   width,
   height,
-  state,
   fontSize,
+  isLoading,
   ...rest
 }: React.DetailedHTMLProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -16,7 +16,7 @@ export default function Button({
   fontSize?: number;
   width?: number;
   height?: number;
-  state?: string;
+  isLoading?: boolean;
   bg?: string;
 }) {
   return (
@@ -46,7 +46,7 @@ export default function Button({
           height: ${height || "40"}px;
         }
         button:disabled {
-          cursor: ${state === "SAVING" ? "wait" : "pointer"};
+          cursor: ${isLoading ? "wait" : "pointer"};
         }
       `}</style>
     </button>

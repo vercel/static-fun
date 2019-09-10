@@ -6,7 +6,7 @@ import SaveBar from "./save-bar";
 export default function EditorContainer({ html, email, editLink }) {
   const [_html, setHtml] = useState(html || "");
   const [_email, setEmail] = useState(email);
-  const [dialogOpen, setDialogOpen] = useState(true);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <div className="root-editor-container">

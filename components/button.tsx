@@ -49,7 +49,7 @@ export default function Button({
           height: ${height || "53"}px;
         }
         button:disabled {
-          cursor: ${isLoading ? "wait" : "pointer"};
+          cursor: ${isLoading ? "not-allowed" : "pointer"};
         }
       `}</style>
     </button>

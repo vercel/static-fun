@@ -133,9 +133,10 @@ export default function SaveBar({
         }
         .edit-link-and-save {
           display: flex;
-          width: 220px;
-          justify-content: space-evenly;
           align-items: center;
+        }
+        .edit-link-and-save p {
+          margin-right: 16px;
         }
         @media (max-width: 500px) {
           .save-bar-container p {

@@ -8,7 +8,7 @@ const Input = function({ width, height, bg, color, borderColor, ...props }) {
         }
         input {
           border-radius: 5px;
-          font-family: "Comic Sans MS", monospace;
+          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
           font-size: 18px;
           padding: 8px;
         }

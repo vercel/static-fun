@@ -151,7 +151,7 @@ export function Welcome() {
           color: #9b51e0;
         }
         .welcome .fun {
-          font-family: "Comic Sans MS", monospace;
+          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
         }
         .welcome p {
           margin: 32px auto 0;
@@ -169,17 +169,19 @@ export function Welcome() {
         }
         .form {
           flex: 0;
+          display: flex;
+          align-items: center;
           text-align: center;
           margin-top: 15px;
           margin-bottom: 15px;
           white-space: nowrap;
-          height: 100px;
+          min-height: 50px;
         }
         .form h2 {
           margin-bottom: 16px;
         }
         .form .suffix {
-          font-family: "Comic Sans MS", monospace;
+          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
           font-weight: bold;
           font-size: 18px;
           margin-left: 4px;

@@ -25,10 +25,6 @@ export default class StaticFunApp extends App {
   render() {
     const { Component, pageProps } = this.props;
 
-    if (this.state.error) {
-      return <h1>error</h1>;
-    }
-
     return (
       <>
         <Head>

@@ -95,9 +95,13 @@ export function Welcome() {
           </div>
           <p>
             An{" "}
-            <a href="https://github.com/zeit/static-fun">open source project</a>{" "}
+            <a href="https://github.com/zeit/static-fun" target="_blank">
+              open source project
+            </a>{" "}
             to demonstrate ZEIT's support of{" "}
-            <a href="https://zeit.co/blog/wildcard-domains">wildcard domains</a>
+            <a href="https://zeit.co/blog/wildcard-domains" target="_blank">
+              wildcard domains
+            </a>
           </p>
         </div>
         <h2>To start go to</h2>
@@ -121,14 +125,40 @@ export function Welcome() {
         {pageExists && (
           <p className="page-exists">
             🚨
-              <a href={`https://${pageExists.name}`}>{pageExists.name}</a>{" "}
-            taken! Try another one.
-            </p>
+            <a href={`https://${pageExists.name}`}>{pageExists.name}</a> taken!
+            Try another one.
+          </p>
         )}
         <div className="emojis" />
+        <div className="powered-by">
+          static.fun is powered by{"  "}
+          <a href="https://nextjs.org" target="_blank">
+            Next.js
+          </a>
+          ,{" "}
+          <a href="https://fauna.com" target="_blank">
+            FaunaDB
+          </a>
+          ,{" "}
+          <a href="https://sendgrid.com" target="_blank">
+            Twilio Sendgrid
+          </a>
+          ,{" "}
+          <a href="https://pusher.com/channels" target="_blank">
+            Pusher Channels
+          </a>
+          ,{" "}
+          <a href="https://simpleanalytics.com" target="_blank">
+            Simple Analytics
+          </a>
+          , and{" "}
+          <a href="https://sentry.io" target="_blank">
+            Sentry
+          </a>
+        </div>
       </div>
       <style jsx>{`
-        .welcome-container {
+          .welcome-container {
           display: flex;
           height: calc(100% - 50px);
           flex-direction: column;
@@ -151,7 +181,8 @@ export function Welcome() {
           color: #9b51e0;
         }
         .welcome .fun {
-          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
+          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard",
+            "ChalkboardSE-Regular", monospace;
         }
         .welcome p {
           margin: 32px auto 0;
@@ -181,7 +212,8 @@ export function Welcome() {
           margin-bottom: 16px;
         }
         .form .suffix {
-          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
+          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard",
+            "ChalkboardSE-Regular", monospace;
           font-weight: bold;
           font-size: 18px;
           margin-left: 4px;
@@ -207,6 +239,31 @@ export function Welcome() {
           background-position: bottom;
           pointer-events: none;
         }
+        .powered-by {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          position: fixed: 
+          bottom: 0;
+          width: 100%;
+          height: 64px;
+          color: white;
+          background: #0085ff;
+	}
+	
+	.powered-by a {
+          color: white;
+	  font-weight: bold;  
+	  margin-left: 8px;
+        }
+	  
+        @media (max-width: 899px) {
+	    .powered-by {
+		display: none;
+        }
+}
+
       `}</style>
       <style jsx>{`
         .welcome,

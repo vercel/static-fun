@@ -54,7 +54,10 @@ export default async (req, res) => {
 
       try {
         console.log(`hydrating html for ${page}.static.fun`);
-        pusher.trigger(page, "hydrate-html", html);
+        await new Promise((resolve, reject) => {
+          pusher.trigger(page, "hydrate-html", html);
+          resolve();
+        });
       } catch (e) {
         console.log({ message: e.message });
       }

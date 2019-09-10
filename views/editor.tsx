@@ -1,21 +1,18 @@
 import Head from "next/head";
+import Div100vh from "react-div-100vh";
+
 import EditorContainer from "../components/editor";
 import TopBar from "../components/top-bar";
 
 export function EditorLayout({ html, email, editLink }) {
   return (
-    <main>
+    <Div100vh>
       <Head>
         <title>Static Fun</title>
         <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
       </Head>
       <TopBar info />
       <EditorContainer html={html} email={email} editLink={editLink} />
-      <style jsx>{`
-        main {
-          height: 100vh;
-        }
-      `}</style>
-    </main>
+    </Div100vh>
   );
 }

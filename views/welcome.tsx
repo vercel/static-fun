@@ -203,7 +203,7 @@ export function Welcome() {
           width: 100%;
           background-image: url("/static/emoji-bg.png");
           background-repeat: repeat-x;
-          background-size: cover;
+          background-size: auto 85%;
           background-position: bottom;
           pointer-events: none;
         }

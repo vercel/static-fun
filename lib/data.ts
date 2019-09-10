@@ -1,4 +1,4 @@
-async function getPageData(setPageData, href) {
+async function getPageData(href): Promise<any> {
   const { host } = window.location;
   let isDev = host.includes("localhost");
   let splitHost = host.split(".");
@@ -6,19 +6,25 @@ async function getPageData(setPageData, href) {
   if ((!isDev && splitHost.length === 3) || (isDev && splitHost.length === 2)) {
     let page = splitHost[0];
     if (page === "www") {
-      setPageData(null);
-      return;
+      return null;
     }
     let res = await fetch(`/api/get-page?page=${page}`);
+    console.log({ res });
+
+    if (res.status === 200) {
+      let { html, allowEdit, token } = await res.json();
+      return { html, allowEdit, token };
+    }
+
+    if (res.status === 404) {
+      let { html, token } = await res.json();
+      return { html, editLink: `${href}?edit=${token}` };
+    }
+
     if (!res.ok && res.status !== 404) {
       let { stack, message } = await res.json();
-      setPageData({ errorCode: res.status, stack, message });
-    } else {
-      let { html, allowEdit, token } = await res.json();
-      setPageData({ html, allowEdit, editLink: `${href}?edit=${token}` });
+      return { errorCode: res.status, stack, message };
     }
-  } else {
-    setPageData(null);
   }
 }
 

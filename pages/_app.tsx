@@ -4,7 +4,12 @@ import React from "react";
 import Sentry from "../lib/sentry-browser";
 
 export default class StaticFunApp extends App {
+  state = {
+    error: null
+  };
+
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
+    this.setState({ error });
     Sentry.withScope(scope => {
       scope.setExtra("componentStack", errorInfo.componentStack);
       Sentry.captureException(error);
@@ -13,8 +18,16 @@ export default class StaticFunApp extends App {
     super.componentDidCatch(error, errorInfo);
   }
 
+  static getDerivedStateFromError() {
+    return { error: true };
+  }
+
   render() {
     const { Component, pageProps } = this.props;
+
+    if (this.state.error) {
+      return <h1>error</h1>;
+    }
 
     return (
       <>

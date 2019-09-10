@@ -12,7 +12,8 @@ export default async (req, res) => {
   } = req;
 
   if (!page) {
-    res.status(400).json({ error: "provide a page to query" });
+    res.status(400).json({ message: "Bad Request: provide a page to query" });
+    return;
   }
 
   if (page === "www") {
@@ -35,7 +36,8 @@ export default async (req, res) => {
       res.setHeader("Set-Cookie", `token=${token}`);
     } catch (e) {
       console.error({ stack: e.stack, message: e.message });
-      throw new Error(e.message);
+      res.status(500).json({ stack: e.stack, message: e.message });
+      return;
     }
   }
 

@@ -43,7 +43,7 @@ export function Welcome() {
       setSearchState("");
       setPageExists(null);
     }
-    setPageToSearch(e.target.value);
+    setPageToSearch(e.target.value.toLowerCase());
   }
 
   function renderButton() {

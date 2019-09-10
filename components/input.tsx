@@ -1,4 +1,4 @@
-export default function Input({ width, error, color, ...props }) {
+const Input = function({ width, height, bg, color, borderColor, ...props }) {
   return (
     <div>
       <input type="text" {...props} />
@@ -7,8 +7,6 @@ export default function Input({ width, error, color, ...props }) {
           display: inline-block;
         }
         input {
-          height: 48px;
-          width: ${width || "286"}px;
           border-radius: 5px;
           font-family: "Comic Sans MS", monospace;
           font-size: 18px;
@@ -20,10 +18,15 @@ export default function Input({ width, error, color, ...props }) {
       `}</style>
       <style jsx>{`
         input {
-          border: 1px solid ${error ? "#f3424d" : "#cccccc"};
+          ${bg ? "background: " + bg + ";" : ""}
+          height: ${height || "48"}px;
+          width: ${width || "286"}px;
+          border: 1px solid ${borderColor ? borderColor : "#cccccc"};
           ${color ? "color: " + color + ";" : ""}
         }
       `}</style>
     </div>
   );
-}
+};
+
+export default Input;

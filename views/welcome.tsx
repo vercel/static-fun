@@ -106,7 +106,9 @@ export function Welcome() {
             color="#9b51e0"
             value={pageToSearch}
             onChange={pageSearchInputHandler}
-            error={Boolean(searchState === "ERROR")}
+            height={53}
+            bg={null}
+            borderColor={searchState === "ERROR" ? "#f3424d" : null}
             placeholder="my-fun-page"
             width={180}
           />
@@ -153,6 +155,7 @@ export function Welcome() {
           width: 500px;
           font-size: 14px;
           line-height: 28px;
+          text-align: center;
           font-family: Menlo, monospace;
         }
         .welcome a {
@@ -161,7 +164,7 @@ export function Welcome() {
         }
         .form {
           text-align: center;
-          margin-top: 0;
+          margin-top: 48px;
           height: 100px;
         }
         .form h2 {
@@ -187,11 +190,19 @@ export function Welcome() {
         }
         .emojis {
           margin-top: 24px;
-          height: 300px;
+          height: 20%;
           width: 100%;
           background-image: url("/static/emoji-bg.png");
           background-repeat: no-repeat;
           background-size: cover;
+        }
+
+        @media (max-width: 500px) {
+          .welcome p {
+            width: 90%;
+            margin: auto;
+            margin-top: 32px;
+          }
         }
 
         @media (min-height: 600px) {

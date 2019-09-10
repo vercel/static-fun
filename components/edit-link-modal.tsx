@@ -23,6 +23,7 @@ export default function EditLinkModal({
     });
     if (dialogOpen) {
       dialogRef.current.showModal();
+      editLinkRef.current.focus();
       editLinkRef.current.select();
       document.execCommand("copy");
     }
@@ -93,20 +94,21 @@ export default function EditLinkModal({
     <dialog ref={dialogRef}>
       <div className="content-container">
         <div className="edit-link">
-          <h2>
-            Secret Edit Link:{" "}
-            <input ref={editLinkRef} type="text" value={editLink} readOnly />
-          </h2>
+          <h2>Secret Edit Link: </h2>
+          <input ref={editLinkRef} type="text" value={editLink} readOnly />
+
           <p>
             Please don't share the edit link with anyone you don't want editing
             your page!
           </p>
+          <hr />
         </div>
-        <div className="header">
-          <h2>Enter your email to save the edit link</h2>
+        <div className="email">
+          <h2>Email yourself the edit link (recommended)</h2>
         </div>
-        <div className="input-container">
+        <div className="email-input-container">
           <input
+            ref={editLinkRef}
             type="text"
             placeholder="joe@john.com"
             value={email}
@@ -158,9 +160,11 @@ export default function EditLinkModal({
         }
         dialog[open] {
           display: block;
-          background: gold;
+          background: #f9d749;
+          border-radius: 6px;
           position: fixed;
-          width: 500px;
+          height: 460px;
+          width: 600px;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
@@ -168,11 +172,9 @@ export default function EditLinkModal({
         dialog::backdrop {
           background: rgba(0, 0, 0, 0.4);
         }
-        .header h2 {
-          font-size: 16px;
-        }
+
         .content-container {
-          font-family: Menlo;
+          font-family: "Roboto", Helvetica, sans-serif;
           height: 286px;
           width: 100%;
           text-align: center;
@@ -181,38 +183,56 @@ export default function EditLinkModal({
           justify-content: space-evenly;
           align-items: center;
         }
+        .edit-link input {
+          height: 53px;
+          width: 447px;
+          border-radius: 5px;
+          background: #000;
+          color: #fff;
+          font-family: "Comic Sans Ms", Menlo, monospace;
+          font-size: 24px;
+        }
         .edit-link h2 {
-          color: red;
-          font-size: 16px;
+          font-size: 40px;
+          margin-top: 24px;
+          margin-bottom: 16px;
+        }
+        .edit-link hr {
+          border: 1px solid black;
+          margin-top: 8px;
+          width: 447px;
+        }
+        .email {
+          width: 447px;
+        }
+        .email h2 {
+          font-size: 24px;
         }
         p {
           font-size: 12px;
           width: 400px;
           padding: 16px;
           font-weight: bold;
+          font-family: Menlo, monospace;
         }
-        .input-container {
+        .email-input-container {
           display: flex;
           align-items: center;
         }
         input {
-          color: black;
-          background: white;
+          color: white;
+          background: black;
           height: 40px;
           width: 286px;
           font-weight: bold;
-          font-family: Menlo;
+          font-family: "Comic Sans Ms", Menlo, monospace;
           border: none;
           padding: 8px;
           margin-right: 8px;
-          border-radius: 3px;
+          border-radius: 5px;
           border: 1px solid black;
         }
 
-        .edit-link input {
-          color: white;
-          background: #464646;
-        }
         @media (max-width: 500px) {
           dialog[open] {
             width: 100%;

@@ -12,7 +12,7 @@ export default function EditorContainer({ html, email, editLink }) {
   return (
     <div className="root-editor-container">
       <EditLinkModal
-        dialogOpen={dialogOpen}
+        dialogOpen={true}
         setDialogOpen={setDialogOpen}
         email={_email}
         setEmail={setEmail}

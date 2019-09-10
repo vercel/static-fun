@@ -233,6 +233,7 @@ export function Welcome() {
           pointer-events: none;
         }
         .powered-by {
+          padding: 8px;
           display: flex;
           align-items: center;
           justify-content: center;

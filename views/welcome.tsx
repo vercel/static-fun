@@ -247,7 +247,7 @@ export function Welcome() {
           position: fixed: 
           bottom: 0;
           width: 100%;
-          height: 64px;
+          height: 80px;
           color: white;
           background: #0085ff;
 	}

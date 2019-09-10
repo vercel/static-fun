@@ -39,34 +39,30 @@ export default function EditorContainer({ html, email, editLink }) {
         .editor-container {
           height: 100%;
           width: 100%;
-          flex: 1;
+          flex: 1 0 50%;
           background: #22222;
         }
         .output-container {
-          flex: 1;
+          flex: 1 0 50%;
           height: 100%;
           width: 100%;
+          -webkit-overflow-scrolling: touch;
+          overflow-y: scroll;
+          font-size: 0;
         }
         @media (max-width: 500px) {
           .root-editor-container {
             flex-direction: column;
           }
           .editor-container {
+            flex: 1 0 50%;
             height: 50%;
             order: 0;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
           }
           .output-container {
+            flex: 1 0 50%;
             height: 50%;
             order: 1;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
           }
         }
       `}</style>
@@ -112,6 +108,10 @@ function Editor({ html, email, setHtml, setDialogOpen }) {
           border: none;
           border-radius: 0;
           resize: none;
+          -webkit-touch-callout: none;
+          -khtml-user-select: none;
+          -webkit-tap-highlight-color: transparent;
+          -webkit-overflow-scrolling: touch;
         }
         @media (max-width: 500px) {
           textarea {
@@ -140,16 +140,12 @@ function OutputContainer({ content }) {
   }
 
   return (
-    <iframe ref={iframeRef} title="html-output" scrolling="yes">
+    <iframe ref={iframeRef} title="html-output">
       <style jsx>{`
         iframe {
           height: 100%;
           width: 100%;
-          overflow: scroll;
           border: none;
-        }
-        @media (max-width: 500px;) {
-          height: 50%;
         }
       `}</style>
     </iframe>

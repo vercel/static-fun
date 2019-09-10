@@ -32,7 +32,7 @@ export default function EditorContainer({ html, email, editLink }) {
       <style jsx>{`
         .root-editor-container {
           display: flex;
-          height: 100%;
+          height: calc(100% - 50px);
           width: 100%;
           margin: 0;
         }
@@ -101,14 +101,16 @@ function Editor({ html, email, setHtml, setDialogOpen }) {
           height: 100%;
         }
         textarea {
+          -webkit-appearance: none;
           width: 100%;
-          height: 90%;
+          height: calc(100% - 48px);
           background: #222222;
           color: #fff;
           font-family: Menlo, monospace;
           font-size: 16px;
           padding: 24px;
           border: none;
+          border-radius: 0;
           resize: none;
         }
         @media (max-width: 500px) {

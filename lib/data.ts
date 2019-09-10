@@ -47,19 +47,19 @@ const defaultMarkup = `
     font-size: 64px
   }
   img {
-    height: 256px;
+    height: auto;
     width: auto;
+    max-width: 100%;
     margin-top: 24px;
   }
   marquee {
     width: fit-content;
     background: salmon;
     color: black;
-    font-family: "Comic Sans MS";
+    font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
     padding: 10px;
     text-transform: black;
     border: 3px solid black;
-  }
   }
 </style>
 

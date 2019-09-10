@@ -49,7 +49,7 @@ export default function TopBar({
           align-items: center;
         }
         .logo-and-info .fun {
-          font-family: "Comic Sans MS", monospace;
+          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
         }
         p {
           font-weight: normal;

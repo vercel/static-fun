@@ -149,13 +149,10 @@ export default function SaveBar({
         }
         .edit-link-and-save {
           display: flex;
-          justify-content: space-evenly;
           align-items: center;
         }
-        .edit-link {
-          margin-right: 24px;
-        }
-        @media (max-width: 500px) {
+        .edit-link-and-save p {
+          margin-right: 16px;
         }
       `}</style>
     </div>

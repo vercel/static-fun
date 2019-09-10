@@ -71,6 +71,9 @@ export default function IndexPage() {
             code {
               color: red;
             }
+            img {
+              max-width: 100%;
+            }
           `}</style>
         </div>
       </FixedCenterLayout>

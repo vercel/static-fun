@@ -41,8 +41,8 @@ export default function Button({
         button {
           background: ${bg || "inherit"};
           font-size: ${fontSize || "18"}px;
-          width: ${width || "64"}px;
-          height: ${height || "40"}px;
+          width: ${width || "83"}px;
+          height: ${height || "53"}px;
         }
         button:disabled {
           cursor: ${isLoading ? "wait" : "pointer"};

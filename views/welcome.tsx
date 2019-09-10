@@ -143,18 +143,11 @@ export function Welcome() {
           <a href="https://sendgrid.com" target="_blank">
             Twilio Sendgrid
           </a>
-          ,{" "}
+          , and{" "}
           <a href="https://pusher.com/channels" target="_blank">
             Pusher Channels
           </a>
-          ,{" "}
-          <a href="https://simpleanalytics.com" target="_blank">
-            Simple Analytics
-          </a>
-          , and{" "}
-          <a href="https://sentry.io" target="_blank">
-            Sentry
-          </a>
+          , with <a href="https://zeit.co">ZEIT Now ▲</a>
         </div>
       </div>
       <style jsx>{`

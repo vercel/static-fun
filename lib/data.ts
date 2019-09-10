@@ -13,7 +13,7 @@ async function getPageData(href): Promise<any> {
 
     if (res.status === 200) {
       let { html, allowEdit, token } = await res.json();
-      return { html, allowEdit, token };
+      return { html, allowEdit, editLink: `${href}?edit=${token}` };
     }
 
     if (res.status === 404) {

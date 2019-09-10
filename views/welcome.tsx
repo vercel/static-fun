@@ -116,15 +116,15 @@ export function Welcome() {
           />
           <span className="suffix">.static.fun</span>
           {renderButton()}
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
-          {pageExists && (
-            <p className="page-exists">
-              🚨
-              <a href={`https://${pageExists.name}`}>{pageExists.name}</a>{" "}
-              taken! Try another one.
-            </p>
-          )}
         </form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {pageExists && (
+          <p className="page-exists">
+            🚨
+              <a href={`https://${pageExists.name}`}>{pageExists.name}</a>{" "}
+            taken! Try another one.
+            </p>
+        )}
         <div className="emojis" />
       </div>
       <style jsx>{`
@@ -188,14 +188,14 @@ export function Welcome() {
           margin-right: 8px;
         }
 
-        .form .page-exists,
-        .form .error-message {
+        .page-exists,
+        .error-message {
           color: red;
           margin-top: 8px;
           font-family: Menlo, monospace;
           text-transform: uppercase;
         }
-        .form .page-exists a {
+        .page-exists a {
           color: red;
         }
         .emojis {
@@ -203,7 +203,7 @@ export function Welcome() {
           width: 100%;
           background-image: url("/static/emoji-bg.png");
           background-repeat: repeat-x;
-          background-size: cover;
+          background-size: auto 85%;
           background-position: bottom;
           pointer-events: none;
         }

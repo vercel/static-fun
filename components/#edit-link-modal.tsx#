@@ -15,7 +15,7 @@ export default function EditLinkModal({
   const dialogRef = useRef<HTMLDialogElement>();
   const editLinkRef = useRef<HTMLInputElement>();
 
-  useEffect(() => {
+  useEffec(() => {
     import("dialog-polyfill").then(dp => {
       dp.default.registerDialog(dialogRef.current);
     });

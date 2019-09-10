@@ -116,7 +116,7 @@ export default function SaveBar({
 
   return (
     <div className="save-bar-container">
-      <p>{renderLastSaved()}</p>
+      <p className="last-saved">{renderLastSaved()}</p>
       <div className="edit-link-and-save">
         {showEditLink && (
           <p
@@ -153,6 +153,9 @@ export default function SaveBar({
         }
         .edit-link-and-save p {
           margin-right: 16px;
+        }
+        .last-saved {
+          width: 120px;
         }
       `}</style>
     </div>

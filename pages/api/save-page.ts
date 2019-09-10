@@ -1,8 +1,24 @@
 import faunadb from "faunadb";
+import Pusher from "pusher";
 
 import { client } from "../../lib/db";
 
 const { Get, Match, Index, Update, Create, Collection } = faunadb.query;
+
+const {
+  PUSHER_APP_ID: appId,
+  PUSHER_APP_KEY: key,
+  PUSHER_APP_SECRET: secret
+} = process.env;
+
+console.log({ appId, key, secret });
+
+const pusher = new Pusher({
+  appId,
+  key,
+  secret,
+  cluster: "us2"
+});
 
 export default async (req, res) => {
   let {
@@ -25,6 +41,7 @@ export default async (req, res) => {
 
   let isDev = host.includes("localhost");
   let splitHost = host.split(".");
+
   if ((!isDev && splitHost.length === 3) || (isDev && splitHost.length === 2)) {
     let page = splitHost[0];
     // check to see if page exists in db
@@ -47,9 +64,15 @@ export default async (req, res) => {
         );
       }
 
-      // if it does exist, check to see if sessionId matches, if it does
-      //   save changes
-      // if it doesn't, send message that unauthorized, send token to email
+      try {
+        pusher.trigger(page, "hydrate-html", html);
+      } catch (e) {
+        console.log({ message: e.message });
+      }
+
+      res.setHeader("Set-Cookie", `token=${token}`);
+      res.status(200).json({ editLink: `${req.headers.host}/?edit=${token}'` });
+      return;
     } catch (e) {
       if (e.name === "NotFound") {
         try {
@@ -63,16 +86,21 @@ export default async (req, res) => {
               }
             })
           );
+          res.setHeader("Set-Cookie", `token=${token}`);
+          res
+            .status(200)
+            .json({ editLink: `${req.headers.host}/?edit=${token}'` });
+          return;
         } catch (e) {
           console.error(new Error(e.message));
+          res.status(500).json({ stack: e.stack, message: e.message });
+          return;
         }
       } else {
         console.error(new Error(e.message));
+        res.status(500).json({ stack: e.stack, message: e.message });
+        return;
       }
     }
   }
-  // if doesn't exist, make new page with sessionId, email, and data
-
-  res.setHeader("Set-Cookie", `token=${token}`);
-  res.status(200).json({ editLink: `${req.headers.host}/?edit=${token}'` });
 };

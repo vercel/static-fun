@@ -25,7 +25,7 @@ export default function Button({
       <style jsx>{`
         button {
           color: white;
-          font-family: Menlo, monospace;
+          font-family: "San Francisco", Helvetica, sans-serif;
           border: none;
           border-radius: 5px;
           cursor: pointer;

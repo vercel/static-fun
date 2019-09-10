@@ -10,6 +10,8 @@
     "FAUNADB_STATIC_FUN_KEY": "@faunadb-static-fun-key",
     "SENDGRID_STATIC_FUN_KEY": "@sendgrid-static-fun-key",
     "SENTRY_DSN": "@sentry-static-fun-dsn",
-    "PUSHER_APP_KEY": "@pusher-static-fun-app-key"
+    "PUSHER_APP_ID": "@pusher-static-fun-app-id",
+    "PUSHER_APP_KEY": "@pusher-static-fun-app-key",
+    "PUSHER_APP_SECRET": "@pusher-static-fun-app-secret"
   }
 }

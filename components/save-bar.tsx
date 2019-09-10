@@ -7,7 +7,9 @@ export default function SaveBar({
   setDialogOpen,
   html,
   saveState,
-  setSaveState
+  setSaveState,
+  showEditLink,
+  setShowEditLink
 }) {
   const [lastSaved, setLastSaved] = useState();
   const [currentTime, setCurrentTime] = useState();
@@ -26,6 +28,10 @@ export default function SaveBar({
       });
       if (res.ok) {
         setSaveState("SUCCESS");
+        if (!showEditLink) {
+          setShowEditLink(true);
+          setDialogOpen(true);
+        }
         setLastSaved(Date.now());
       }
     } catch ({ name, message }) {
@@ -112,7 +118,17 @@ export default function SaveBar({
     <div className="save-bar-container">
       <p>{renderLastSaved()}</p>
       <div className="edit-link-and-save">
-        <p onClick={() => setDialogOpen(true)}>🔏 EDIT LINK</p>
+        {showEditLink && (
+          <p
+            className="edit-link"
+            onClick={() => {
+              console.log("opening dialog");
+              setDialogOpen(true);
+            }}
+          >
+            🔏 EDIT LINK
+          </p>
+        )}
         {renderButton()}
       </div>
       <style jsx>{`
@@ -137,11 +153,6 @@ export default function SaveBar({
         }
         .edit-link-and-save p {
           margin-right: 16px;
-        }
-        @media (max-width: 500px) {
-          .save-bar-container p {
-            font-size: 10px;
-          }
         }
       `}</style>
     </div>

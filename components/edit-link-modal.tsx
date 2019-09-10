@@ -7,9 +7,7 @@ export default function EditLinkModal({
   setDialogOpen,
   email,
   setEmail,
-  editLink,
-  skip,
-  setSkip
+  editLink
 }) {
   const [sendingState, setSendingState] = useState();
   const [errorMessage, setErrorMessage] = useState();
@@ -30,6 +28,7 @@ export default function EditLinkModal({
   }, [dialogOpen]);
 
   async function sendEmail() {
+    console.log("sending email to: ", email);
     if (email) {
       setSendingState("SENDING");
       setErrorMessage(null);
@@ -60,19 +59,19 @@ export default function EditLinkModal({
     switch (sendingState) {
       case "SENDING":
         return (
-          <Button bg="#CDAE8F" fontSize={24} disabled isLoading>
+          <Button bg="#CDAE8F" fontSize={44} disabled isLoading>
             ⏳
           </Button>
         );
       case "ERROR":
         return (
-          <Button bg="#000000" onClick={sendEmail} fontSize={24}>
+          <Button bg="#000000" onClick={sendEmail} fontSize={44}>
             ❌
           </Button>
         );
       case "SUCCESS":
         return (
-          <Button bg="#0085FF" disabled fontSize={24}>
+          <Button bg="#0085FF" disabled fontSize={44}>
             🎉
           </Button>
         );
@@ -80,8 +79,8 @@ export default function EditLinkModal({
         return (
           <Button
             bg="#9B51E0"
-            disabled={Boolean(email)}
-            fontSize={24}
+            disabled={!Boolean(email)}
+            fontSize={44}
             onClick={sendEmail}
           >
             💌
@@ -108,7 +107,6 @@ export default function EditLinkModal({
         </div>
         <div className="email-input-container">
           <input
-            ref={editLinkRef}
             type="text"
             placeholder="joe@john.com"
             value={email}
@@ -124,35 +122,17 @@ export default function EditLinkModal({
           </p>
         )}
 
-        {skip && (
-          <div>
-            <p>
-              without saving this editing link, you will lose editing rights to
-              this page, please consider emailing it to yourself
-            </p>
-            <Button
-              onClick={() => {
-                setDialogOpen(false);
-                dialogRef.current.close();
-              }}
-            >
-              skip!
-            </Button>
-          </div>
-        )}
-        {!skip && email && (
-          <p
-            onClick={() => {
-              setSendingState(null);
-              setErrorMessage(null);
-              setDialogOpen(false);
-              dialogRef.current.close();
-            }}
-          >
-            Close
-          </p>
-        )}
-        {!skip && !email && <p onClick={() => setSkip(true)}>Skip →</p>}
+        <p
+          className="close"
+          onClick={() => {
+            dialogRef.current.close();
+            setSendingState(null);
+            setErrorMessage(null);
+            setDialogOpen(false);
+          }}
+        >
+          Close
+        </p>
       </div>
       <style jsx>{`
         dialog {
@@ -196,14 +176,27 @@ export default function EditLinkModal({
           height: 53px;
           width: 447px;
           border-radius: 5px;
+          border: none;
           background: #000;
           color: #fff;
           font-family: "Comic Sans Ms", Menlo, monospace;
           font-size: 24px;
         }
         .edit-link h2 {
-          font-size: 30px;
-          margin-bottom: 20px;
+          font-size: 40px;
+          margin-top: 24px;
+          margin-bottom: 16px;
+        }
+        .edit-link hr {
+          border: 1px solid black;
+          margin-top: 8px;
+          width: 447px;
+        }
+        .email {
+          width: 100%;
+        }
+        .email h2 {
+          font-size: 24px;
         }
         p {
           font-size: 12px;
@@ -217,18 +210,23 @@ export default function EditLinkModal({
           display: flex;
           align-items: center;
         }
-        input {
-          color: white;
-          background: black;
-          height: 40px;
+        .email-input-container input {
+          color: black;
+          background: white;
+          height: 53px;
           width: 286px;
           font-weight: bold;
           font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
-          border: none;
+          border: 1px solid black;
           padding: 8px;
           margin-right: 8px;
           border-radius: 5px;
-          border: 1px solid black;
+          font-size: 24px;
+        }
+
+        .close {
+          font-size: 16px;
+          cursor: pointer;
         }
 
         @media (max-width: 500px) {

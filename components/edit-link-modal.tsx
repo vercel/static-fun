@@ -93,16 +93,15 @@ export default function EditLinkModal({
     <dialog ref={dialogRef}>
       <div className="content-container">
         <div className="edit-link">
-          <h2>
-            Secret Edit Link
-          </h2>
+          <h2>Secret Edit Link</h2>
           <input ref={editLinkRef} type="text" value={editLink} readOnly />
           <p>
             Please don't share the edit link with anyone you don't want editing
             your page!
           </p>
+          <hr />
         </div>
-        <div className="header">
+        <div className="email">
           <h2>Enter your email to save the edit link (recommended)</h2>
         </div>
         <div className="email-input-container">
@@ -141,7 +140,6 @@ export default function EditLinkModal({
         dialog[open] {
           display: flex;
           background: #f9d749;
-          background: gold;
           border-radius: 6px;
           position: fixed;
           height: 460px;
@@ -153,17 +151,8 @@ export default function EditLinkModal({
         dialog::backdrop {
           background: rgba(0, 0, 0, 0.4);
         }
-        .header {
-          width: 100%;
-          border-top: 1px solid;
-        }
-        .header h2 {
-          font-size: 16px;
-          margin-bottom: 10px;
-          padding-top: 10px;
-        }
         .content-container {
-          min-height: 286px;
+          height: 100%;
           width: 100%;
           padding: 10px 15px;
           text-align: center;
@@ -194,6 +183,7 @@ export default function EditLinkModal({
         }
         .email {
           width: 100%;
+          margin-top: 24px;
         }
         .email h2 {
           font-size: 24px;
@@ -205,7 +195,7 @@ export default function EditLinkModal({
           font-weight: bold;
           font-family: Menlo, monospace;
         }
-        .input-container {
+        .email-input-container {
           flex: auto;
           display: flex;
           align-items: center;
@@ -216,7 +206,8 @@ export default function EditLinkModal({
           height: 53px;
           width: 286px;
           font-weight: bold;
-          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
+          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard",
+            "ChalkboardSE-Regular", monospace;
           border: 1px solid black;
           padding: 8px;
           margin-right: 8px;
@@ -226,12 +217,23 @@ export default function EditLinkModal({
 
         .close {
           font-size: 16px;
+          width: fit-content;
           cursor: pointer;
         }
 
         @media (max-width: 500px) {
           dialog[open] {
             width: 100%;
+          }
+          .edit-link input {
+            width: 80%;
+          }
+          .edit-link p {
+            width: 80%;
+            margin: auto;
+          }
+          .email-input-container input {
+            width: 200px;
           }
         }
       `}</style>

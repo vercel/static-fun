@@ -130,10 +130,9 @@ export function Welcome() {
         }
         .welcome-container {
           display: flex;
-          margin-top: 56px;
+          margin-top: 40px;
           height: 100%;
           flex-direction: column;
-          justify-content: space-between;
           align-items: center;
         }
         .welcome {
@@ -187,11 +186,21 @@ export function Welcome() {
           color: red;
         }
         .emojis {
+          margin-top: 24px;
           height: 300px;
           width: 100%;
-          background-image: url("/static/emoji-bg.svg");
+          background-image: url("/static/emoji-bg.png");
           background-repeat: no-repeat;
           background-size: cover;
+        }
+
+        @media (min-height: 600px) {
+          .emojis {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          }
         }
       `}</style>
       <style jsx>{`

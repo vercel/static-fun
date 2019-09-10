@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
+import Div100vh from "react-div-100vh";
 
 import Button from "../components/button";
 import Input from "../components/input";
@@ -79,7 +80,7 @@ export function Welcome() {
   }
 
   return (
-    <main>
+    <Div100vh>
       <Head>
         <title>Static Fun</title>
         <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
@@ -99,8 +100,8 @@ export function Welcome() {
             <a href="https://zeit.co/blog/wildcard-domains">wildcard domains</a>
           </p>
         </div>
+        <h2>To start go to</h2>
         <form className="form" onSubmit={checkIfPageExists}>
-          <h2>To start go to</h2>
           <Input
             required
             color="#9b51e0"
@@ -111,6 +112,7 @@ export function Welcome() {
             borderColor={searchState === "ERROR" ? "#f3424d" : null}
             placeholder="my-fun-page"
             width={180}
+            style={{ maxWidth: "40vw" }}
           />
           <span className="suffix">.static.fun</span>
           {renderButton()}
@@ -126,19 +128,20 @@ export function Welcome() {
         <div className="emojis" />
       </div>
       <style jsx>{`
-        main {
-          height: 100vh;
-          width: 100vw;
-        }
         .welcome-container {
           display: flex;
-          margin-top: 40px;
-          height: 100%;
+          height: calc(100% - 50px);
           flex-direction: column;
           align-items: center;
         }
         .welcome {
+          flex: 1 0 300px;
+          padding: 30px 0 15px;
+          width: 100%;
           text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
         }
         .welcome span {
           font-weight: bold;
@@ -151,8 +154,10 @@ export function Welcome() {
           font-family: "Comic Sans MS", monospace;
         }
         .welcome p {
-          margin-top: 32px;
-          width: 500px;
+          margin: 32px auto 0;
+          padding: 0 15px;
+          width: 650px;
+          max-width: 100%;
           font-size: 14px;
           line-height: 28px;
           text-align: center;
@@ -163,8 +168,11 @@ export function Welcome() {
           color: black;
         }
         .form {
+          flex: 0;
           text-align: center;
-          margin-top: 48px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+          white-space: nowrap;
           height: 100px;
         }
         .form h2 {
@@ -189,29 +197,13 @@ export function Welcome() {
           color: red;
         }
         .emojis {
-          margin-top: 24px;
-          height: 20%;
+          flex: 0 1 660px;
           width: 100%;
           background-image: url("/static/emoji-bg.png");
-          background-repeat: no-repeat;
+          background-repeat: repeat-x;
           background-size: cover;
-        }
-
-        @media (max-width: 500px) {
-          .welcome p {
-            width: 90%;
-            margin: auto;
-            margin-top: 32px;
-          }
-        }
-
-        @media (min-height: 600px) {
-          .emojis {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-          }
+          background-position: bottom;
+          pointer-events: none;
         }
       `}</style>
       <style jsx>{`
@@ -220,6 +212,6 @@ export function Welcome() {
           filter: ${pageExists ? "grayscale(1)" : "none"};
         }
       `}</style>
-    </main>
+    </Div100vh>
   );
 }

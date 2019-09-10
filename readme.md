@@ -1,6 +1,5 @@
 # static.fun
 
-
 ### Running Locally:
 
 Export the following `ENV` vars with the keys found in 1password.
@@ -15,6 +14,3 @@ Then install the deps and fire the dev server:
 ```
 yarn && yarn dev
 ```
-
-
-

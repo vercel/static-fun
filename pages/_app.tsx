@@ -55,8 +55,8 @@ export default class StaticFunApp extends App {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
               Helvetica, Arial, sans-serif, "Apple Color Emoji",
               "Segoe UI Emoji", "Segoe UI Symbol";
-            height: 100vh;
-            width: 100vw;
+            height: 100%;
+            max-width: 100vw;
             overflow: hidden;
           }
         `}</style>

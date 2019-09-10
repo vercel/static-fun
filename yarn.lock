@@ -4257,6 +4257,11 @@ rc@^1.2.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-div-100vh@^0.3.4:
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/react-div-100vh/-/react-div-100vh-0.3.4.tgz#45507a121e71198d22e24b2b37710393bcf3501e"
+  integrity sha512-1OYEtmZydas/O4VD1tA3t1EgGG67ml9LnyuUTLjVU8CV3FFFq2HfFEMAAIaAUzjNqhuSZ8pV7IDOViUYQ7vjew==
+
 react-dom@^16.9.0:
   version "16.9.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.9.0.tgz#5e65527a5e26f22ae3701131bcccaee9fb0d3962"

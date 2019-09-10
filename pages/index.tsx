@@ -15,10 +15,6 @@ export default function IndexPage() {
   const router = useRouter();
 
   useEffect(() => {
-    if (window.location.host === "static.fun") {
-      window.location.href = "https://www.static.fun";
-    }
-
     let href = window.location.href;
 
     let linkToken = router.query.edit;

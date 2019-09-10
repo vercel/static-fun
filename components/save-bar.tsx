@@ -92,6 +92,7 @@ export default function SaveBar({
       default:
         return (
           <Button
+            fontFamily="Menlo, monospace"
             width={80}
             height={36}
             bg="#FF0080"
@@ -154,8 +155,10 @@ export default function SaveBar({
         .edit-link-and-save p {
           margin-right: 16px;
         }
-        .last-saved {
-          width: 120px;
+        @media (max-width: 500px) {
+          .last-saved {
+            width: 120px;
+          }
         }
       `}</style>
     </div>

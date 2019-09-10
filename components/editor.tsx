@@ -6,23 +6,19 @@ import SaveBar from "./save-bar";
 export default function EditorContainer({ html, email, editLink }) {
   const [_html, setHtml] = useState(html || "");
   const [_email, setEmail] = useState(email);
-  const [skip, setSkip] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
 
   return (
     <div className="root-editor-container">
       <EditLinkModal
-        dialogOpen={true}
+        dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
         email={_email}
         setEmail={setEmail}
         editLink={editLink}
-        skip={skip}
-        setSkip={setSkip}
       />
       <div className="editor-container">
         <Editor
-          skip={skip}
           html={_html}
           email={_email}
           setHtml={setHtml}
@@ -78,14 +74,12 @@ export default function EditorContainer({ html, email, editLink }) {
   );
 }
 
-function Editor({ html, email, setHtml, setDialogOpen, skip }) {
+function Editor({ html, email, setHtml, setDialogOpen }) {
   const [saveState, setSaveState] = useState();
+  const [showEditLink, setShowEditLink] = useState(false);
 
   function onChange(e) {
     setHtml(e.target.value);
-    if (!email && !skip) {
-      setDialogOpen(true);
-    }
     if (saveState === "SUCCESS") {
       setSaveState("DEFAULT");
     }
@@ -97,6 +91,8 @@ function Editor({ html, email, setHtml, setDialogOpen, skip }) {
         html={html}
         saveState={saveState}
         setSaveState={setSaveState}
+        showEditLink={showEditLink}
+        setShowEditLink={setShowEditLink}
       />
       <textarea value={html} onChange={onChange} spellCheck={false} />
       <style jsx>{`

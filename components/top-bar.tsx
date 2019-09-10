@@ -79,10 +79,13 @@ export default function TopBar({
         .view-source * {
           margin-left: 8px;
         }
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
           p {
             font-size: 10px;
             font-weight: normal;
+          }
+          .logo-and-info p {
+            display: none;
           }
         }
       `}</style>

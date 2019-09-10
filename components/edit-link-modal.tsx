@@ -189,7 +189,7 @@ export default function EditLinkModal({
           text-align: center;
           display: flex;
           flex-direction: column;
-          justify-content: space-evenly;
+          justify-content: center;
           align-items: center;
         }
         .edit-link input {
@@ -202,8 +202,8 @@ export default function EditLinkModal({
           font-size: 24px;
         }
         .edit-link h2 {
-          font-size: 20px;
-          margin-bottom: 10px;
+          font-size: 30px;
+          margin-bottom: 20px;
         }
         p {
           font-size: 12px;

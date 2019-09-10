@@ -131,7 +131,7 @@ export function Welcome() {
         )}
         <div className="emojis" />
         <div className="powered-by">
-          static.fun is powered by{"  "}
+          Powered by{"  "}
           <a href="https://nextjs.org" target="_blank">
             Next.js
           </a>

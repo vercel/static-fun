@@ -9,7 +9,6 @@ async function getPageData(href): Promise<any> {
       return null;
     }
     let res = await fetch(`/api/get-page?page=${page}`);
-    console.log({ res });
 
     if (res.status === 200) {
       let { html, allowEdit, token } = await res.json();

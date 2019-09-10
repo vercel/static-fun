@@ -11,6 +11,13 @@ const {
   PUSHER_APP_SECRET: secret
 } = process.env;
 
+const pusher = new Pusher({
+  appId,
+  key,
+  secret,
+  cluster: "us2"
+});
+
 export default async (req, res) => {
   let {
     cookies: { token },

@@ -20,6 +20,7 @@ export function Welcome() {
         if (res.status === 200) {
           setSearchState("ERROR");
           setPageExists({ name: `${pageToSearch}.static.fun` });
+          return;
         }
         if (res.status === 404) {
           window.location.href = `https://${pageToSearch}.static.fun`;
@@ -28,8 +29,10 @@ export function Welcome() {
           throw new Error(message);
         }
       } catch (e) {
+        console.log(e.message);
         setErrorMessage(e.message);
         setSearchState("NETWORK_ERROR");
+        return;
       }
     }
   }
@@ -50,24 +53,28 @@ export function Welcome() {
             ⏳
           </Button>
         );
+        break;
       case "ERROR":
         return (
           <Button bg="#f3424d" disabled fontSize={32}>
             →
           </Button>
         );
+        break;
       case "NETWORK_ERROR":
         return (
           <Button bg="#000000" onClick={checkIfPageExists} fontSize={24}>
             ❌
           </Button>
         );
+        break;
       default:
         return (
           <Button bg="#9b51e0" onClick={checkIfPageExists} fontSize={32}>
             →
           </Button>
         );
+        break;
     }
   }
 

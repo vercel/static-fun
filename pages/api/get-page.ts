@@ -54,6 +54,7 @@ export default async (req, res) => {
   } catch (error) {
     if (error.name === "NotFound") {
       res.status(404).json({ html: null, token });
+      return;
     }
 
     if (error.syscall === "getaddrinfo") {
@@ -62,9 +63,11 @@ export default async (req, res) => {
         message:
           "There was a network error, please check connection and try again"
       });
+      return;
     } else {
       console.error({ error });
       res.status(500).json({ stack: error.stack, message: error.message });
+      return;
     }
   }
 };

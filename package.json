@@ -12,6 +12,7 @@
     "next": "^9.0.6-canary.1",
     "node-fetch": "^2.6.0",
     "react": "^16.9.0",
+    "react-div-100vh": "^0.3.4",
     "react-dom": "^16.9.0",
     "react-spinners": "^0.6.1",
     "uid-promise": "^1.1.0"

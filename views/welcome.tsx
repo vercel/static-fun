@@ -143,11 +143,11 @@ export function Welcome() {
           <a href="https://sendgrid.com" target="_blank">
             Twilio Sendgrid
           </a>
-          , and{" "}
+          ,
           <a href="https://pusher.com/channels" target="_blank">
             Pusher Channels
           </a>
-          , with <a href="https://zeit.co">ZEIT Now ▲</a>
+          , and hosted with <a href="https://zeit.co">ZEIT Now ▲</a>
         </div>
       </div>
       <style jsx>{`

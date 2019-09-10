@@ -11,15 +11,6 @@ const {
   PUSHER_APP_SECRET: secret
 } = process.env;
 
-console.log({ appId, key, secret });
-
-const pusher = new Pusher({
-  appId,
-  key,
-  secret,
-  cluster: "us2"
-});
-
 export default async (req, res) => {
   let {
     cookies: { token },
@@ -28,14 +19,6 @@ export default async (req, res) => {
   } = req;
 
   const sessionId = token;
-
-  console.log({
-    host,
-    token,
-    email,
-    html,
-    sessionId
-  });
 
   // parse page information from host
 
@@ -51,8 +34,6 @@ export default async (req, res) => {
         ref
       } = (await client.query(Get(Match(Index("page_by_name"), page)))) as any;
 
-      console.log({ ref });
-
       if (sessionId === savedPageSessionId) {
         await client.query(
           Update(ref, {
@@ -65,6 +46,7 @@ export default async (req, res) => {
       }
 
       try {
+        console.log(`hydrating html for ${page}.static.fun`);
         pusher.trigger(page, "hydrate-html", html);
       } catch (e) {
         console.log({ message: e.message });

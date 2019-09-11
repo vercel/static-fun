@@ -39,7 +39,7 @@ export default async (req, res) => {
       const {
         data: { sessionId: savedPageSessionId },
         ref
-      } = (await client.query(Get(Match(Index("page_by_name"), page)))) as any;
+      } = (await client.query(Get(Match(Index("ref_by_name"), page)))) as any;
 
       if (sessionId === savedPageSessionId) {
         await client.query(

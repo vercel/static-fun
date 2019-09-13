@@ -57,12 +57,12 @@ export default function EditorContainer({ html, email, editLink }) {
           .editor-container {
             flex: 1 0 50%;
             height: 50%;
-            order: 0;
+            order: 1;
           }
           .output-container {
             flex: 1 0 50%;
             height: 50%;
-            order: 1;
+            order: 0;
           }
         }
       `}</style>

@@ -30,7 +30,7 @@ async function getPageData(href): Promise<any> {
 const defaultMarkup = `
 <h1>Welcome to<br> static.fun!</h1>
 <marquee>hack and be merry <3</marquee>
-<img src="https://media.giphy.com/media/h4lhtypKce2GHbfili/giphy.gif" />
+<img src="https://media.giphy.com/media/C9x8gX02SnMIoAClXa/giphy.gif" />
 <style>
   * {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

@@ -98,8 +98,8 @@ export function Welcome() {
             <a href="https://github.com/zeit/static-fun" target="_blank">
               open source project
             </a>{" "}
-            to demonstrate ZEIT's support of{" "}
-            <a href="https://zeit.co/blog/wildcard-domains" target="_blank">
+            to demonstrate Vercel's support of{" "}
+            <a href="https://vercel.com/blog/wildcard-domains" target="_blank">
               wildcard domains
             </a>
           </p>
@@ -147,7 +147,7 @@ export function Welcome() {
           <a href="https://pusher.com/channels" target="_blank">
             Pusher Channels
           </a>
-          , and hosted with <a href="https://zeit.co">ZEIT Now</a>
+          , and hosted with <a href="https://vercel.com">Vercel</a>
         </div>
       </div>
       <style jsx>{`

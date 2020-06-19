@@ -18,14 +18,14 @@ export default function TopBar({
         </a>
         {info && (
           <p>
-            is an open source demo to demonstrate ZEIT's support of wildcard
+            is an open source demo to demonstrate Vercel's support of wildcard
             domains.{"  "}
-            <a href="https://zeit.co/blog/wildcard-domains">Learn More →</a>
+            <a href="https://vercel.com/blog/wildcard-domains">Learn More →</a>
           </p>
         )}
       </div>
       <div className="view-source">
-        <a href="https://github.com/zeit/static-fun" target="_blank">
+        <a href="https://github.com/vercel/static-fun" target="_blank">
           <p>VIEW SOURCE</p>
           <div>
             <GitHub />
@@ -49,7 +49,8 @@ export default function TopBar({
           align-items: center;
         }
         .logo-and-info .fun {
-          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", monospace;
+          font-family: "Comic Sans", "Comic Sans MS", "Chalkboard",
+            "ChalkboardSE-Regular", monospace;
         }
         p {
           font-weight: normal;

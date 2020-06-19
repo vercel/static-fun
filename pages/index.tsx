@@ -15,7 +15,7 @@ export default function IndexPage() {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("🦄 https://zeit.co/blog/wildcard-domains");
+    console.log("🦄 https://vercel.com/blog/wildcard-domains");
     let href = window.location.href;
 
     let linkToken = router.query.edit;

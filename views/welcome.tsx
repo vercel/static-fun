@@ -95,7 +95,7 @@ export function Welcome() {
           </div>
           <p>
             An{" "}
-            <a href="https://github.com/zeit/static-fun" target="_blank">
+            <a href="https://github.com/vercel/static-fun" target="_blank">
               open source project
             </a>{" "}
             to demonstrate Vercel's support of{" "}

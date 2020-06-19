@@ -2,7 +2,7 @@
 
 ### Summary:
 
-Wildcard domains unlock the ability to build _platforms_ that scale. With zero-configuration, you're able to provide your customers with a personalized space on your host domain. If you haven't already read our [blog post](https://zeit.co/blog/wildcard-domains), then start there. This project is a fun and simple demonstration of wildcard domains where you are able to claim a page under any subdomain if its available and retain edit rights via a unique session identifier. Please feel free to raise issues, and send PRs where you may have questions or feel like bits of code can be improved!
+Wildcard domains unlock the ability to build _platforms_ that scale. With zero-configuration, you're able to provide your customers with a personalized space on your host domain. If you haven't already read our [blog post](https://vercel.com/blog/wildcard-domains), then start there. This project is a fun and simple demonstration of wildcard domains where you are able to claim a page under any subdomain if its available and retain edit rights via a unique session identifier. Please feel free to raise issues, and send PRs where you may have questions or feel like bits of code can be improved!
 
 ### Technologies:
 

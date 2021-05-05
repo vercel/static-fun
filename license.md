@@ -175,7 +175,7 @@ the conditions stated in this License.
 
 END OF TERMS AND CONDITIONS
 
-Copyright 2017 Vercel, Inc.
+Copyright 2021 Vercel, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

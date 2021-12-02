@@ -19,6 +19,7 @@ export default function IndexPage() {
     let href = window.location.href;
 
     let linkToken = router.query.edit;
+    console.log("öylesine")
 
     if (linkToken) {
       document.cookie = `linkToken=${linkToken}`;

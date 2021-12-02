@@ -13,6 +13,8 @@ export default function IndexPage() {
   const [email, setEmail] = useState();
   const [error, setError] = useState();
   const router = useRouter();
+  
+  console.log("deneme")
 
   useEffect(() => {
     console.log("🦄 https://vercel.com/blog/wildcard-domains");

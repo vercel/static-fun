@@ -35,7 +35,7 @@ export function RenderStaticLayout({ html }) {
     <>
       <Head>
         <title>Static Fun</title>
-        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <main dangerouslySetInnerHTML={{ __html: newHtml || html }}></main>
       <style jsx>{`

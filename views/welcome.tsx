@@ -83,7 +83,7 @@ export function Welcome() {
     <Div100vh>
       <Head>
         <title>Static Fun</title>
-        <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
       </Head>
       <TopBar grayScale={Boolean(pageExists)} />
       <div className="welcome-container">
@@ -226,7 +226,7 @@ export function Welcome() {
         .emojis {
           flex: 0 1 660px;
           width: 100%;
-          background-image: url("/static/emoji-bg.png");
+          background-image: url("/emoji-bg.png");
           background-repeat: repeat-x;
           background-size: auto 85%;
           background-position: bottom;

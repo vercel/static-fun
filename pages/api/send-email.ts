@@ -1,8 +1,6 @@
-import fetch from "node-fetch";
+import { templateId as sendgridTemplateId } from '../../sendgrid.json';
 
-import { templateId as sendgridTemplateId } from "../../sendgrid.json";
-
-const SENDGRID_MAIL_API = "https://api.sendgrid.com/v3/mail/send";
+const SENDGRID_MAIL_API = 'https://api.sendgrid.com/v3/mail/send';
 
 export default async (req, res) => {
   const { email, editLink } = req.body;
@@ -19,22 +17,22 @@ export default async (req, res) => {
         dynamic_template_data: {
           editLink
         },
-        subject: "Your Secret Edit Link!"
+        subject: 'Your Secret Edit Link!'
       }
     ],
     from: {
-      email: "noreply@static.fun",
-      name: "Static Fun"
+      email: 'noreply@static.fun',
+      name: 'Static Fun'
     },
     template_id: sendgridTemplateId
   };
 
   try {
-    console.log("sending email");
+    console.log('sending email');
     let response = await fetch(SENDGRID_MAIL_API, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${process.env.SENDGRID_STATIC_FUN_KEY}`
       },
       body: JSON.stringify(emailBody)

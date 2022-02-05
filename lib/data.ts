@@ -1,11 +1,11 @@
 async function getPageData(href): Promise<any> {
   const { host } = window.location;
-  let isDev = host.includes("localhost");
-  let splitHost = host.split(".");
+  let isDev = host.includes('localhost');
+  let splitHost = host.split('.');
 
   if ((!isDev && splitHost.length === 3) || (isDev && splitHost.length === 2)) {
     let page = splitHost[0];
-    if (page === "www") {
+    if (page === 'www') {
       return null;
     }
     let res = await fetch(`/api/get-page?page=${page}`);

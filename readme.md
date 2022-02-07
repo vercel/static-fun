@@ -10,7 +10,7 @@ Wildcard domains unlock the ability to build _platforms_ that scale. With zero-c
 
 ### Building Scalable Multitenant Applications
 
-We recently launched the Platforms Starter Kit that's a comprehensive template for building multi-tenant applications with built-in custom domains support:
+We recently launched the [Platforms Starter Kit](https://demo.vercel.pub/platforms-starter-kit) that's a comprehensive template for building multi-tenant applications with built-in custom domains support:
 - Read the announcement: https://demo.vercel.pub/platforms-starter-kit
 - Check out the guide: https://vercel.com/guides/nextjs-multi-tenant-application
 - Try out the repo: https://github.com/vercel/platforms

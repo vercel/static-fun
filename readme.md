@@ -7,3 +7,10 @@ Wildcard domains unlock the ability to build _platforms_ that scale. With zero-c
 - [FaunaDB](https://fauna.com): high-performance, low-latency, and serverless persistence of page data, and session identifiers
 - [Twilio Sendgrid](https://sendgrid.com): dead simple programmatic email service for sending unique session links
 - [Pusher Channels](https://pusher.com/channels): globally distributed and managed WebSocket infrastructure for broadcasting real-time updates when saving pages
+
+### Building Scalable Multitenant Applications
+
+We recently launched the Platforms Starter Kit that's a comprehensive template for building multi-tenant applications with built-in custom domains support:
+- Read the announcement: https://demo.vercel.pub/platforms-starter-kit
+- Check out the guide: https://vercel.com/guides/nextjs-multi-tenant-application
+- Try out the repo: https://github.com/vercel/platforms
